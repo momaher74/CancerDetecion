@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hh/cubit/app_cubit.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
     // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     var cubit = AppCubit.get(context);
-    cubit.screen = HomeWidget(height: height);
+    cubit.screen = HomeWidget(height: height,cubit: cubit,);
     return BlocConsumer<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(
@@ -67,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeHomeSelect();
+                          cubit.changeHomeSelect(height: height,cubit: cubit);
                         },
                         child: Row(
                           children: [
@@ -126,7 +127,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeFeatureSelect();
+                          cubit.changeFeatureSelect(
+                              height: height, cubit: context);
                         },
                         child: Row(
                           children: [
@@ -576,6 +578,40 @@ class HomeScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           cubit.changeExitSelect();
+                          Dialog exitDialog = Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.0)),
+                            //this right here
+                            child: Container(
+                              height: 100.0,
+                              width: 100.0,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  const Text("Are you sure to exit ?"),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {
+                                            SystemNavigator.pop();
+                                          },
+                                          child: const Text("yes")),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text("cancel"))
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => exitDialog,
+                          );
                         },
                         child: Row(
                           children: [
@@ -647,9 +683,7 @@ class HomeScreen extends StatelessWidget {
         );
       },
       listener: (context, state) {
-        if (state == ChangeColonSuccessState) {
-          cubit.screen = CancerTypeWidget(height: height, cubit: cubit);
-        }
+
       },
     );
   }

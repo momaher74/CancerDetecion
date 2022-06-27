@@ -9,10 +9,8 @@ import 'cubit/observar.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-
   DioHelper.init();
   await CacheHelper.init();
-
   BlocOverrides.runZoned(
         () => runApp(const MyApp()),
     blocObserver: AppBlocObserver(),
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BlocProvider<AppCubit>(
-      create: (context)=>AppCubit(),
+      create: (context)=>AppCubit()..createDB(),
       child: BlocConsumer<AppCubit,AppState>(
         listener: (context , state){},
         builder: (context , state ){

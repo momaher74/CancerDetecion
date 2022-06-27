@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/helpers/component/component.dart';
 import 'package:meta/meta.dart';
+import 'package:sqflite/sqflite.dart';
 
 part 'app_state.dart';
 
@@ -10,25 +11,25 @@ class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
 
   static AppCubit get(context) => BlocProvider.of(context);
+
+  //navigation codes
+
   String cancerType = "";
   bool homeSelect = true;
   bool featureSelect = false;
-
   bool colonSelect = false;
-
   bool breastSelect = false;
-
   bool liverSelect = false;
-
   bool lungSelect = false;
-
   bool leukemiaSelect = false;
-
   bool contactSelect = false;
   bool exitSelect = false;
   Widget? screen;
 
-  void changeHomeSelect() {
+  void changeHomeSelect({
+    required height,
+    required cubit,
+  }) {
     homeSelect = true;
     featureSelect = false;
     colonSelect = false;
@@ -38,6 +39,10 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
+    screen = HomeWidget(
+      height: height,
+      cubit: cubit,
+    );
     emit(ChangeHomeSuccessState());
   }
 
@@ -56,7 +61,7 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeColonSuccessState());
   }
 
-  void changeFeatureSelect() {
+  void changeFeatureSelect({required height, required cubit}) {
     homeSelect = false;
     featureSelect = true;
     colonSelect = false;
@@ -66,8 +71,7 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
-    cancerType = "Feature Selection";
-
+    screen = FeatureSelectionWidgets(height: height, cubit: cubit);
     emit(ChangeFeatureSuccessState());
   }
 
@@ -162,4 +166,91 @@ class AppCubit extends Cubit<AppState> {
     exitSelect = true;
     emit(ChangeExitSuccessState());
   }
+
+//sqflite codes
+  Database? database;
+  List historyList = [];
+
+  void createDB() async {
+    await openDatabase('history.db', version: 1, onCreate: (database, version) {
+      database
+          .execute(
+              'create table history (id integer primary key , fName text , type text , date text , time text , result text )')
+          .then((value) {
+        emit(OnCreateSuccessState());
+      }).catchError((error) {
+        print(error.toString());
+        emit(OnCreateSuccessState());
+      });
+    }, onOpen: (database) {})
+        .then((value) {
+      database = value;
+      getDataFromDataBase();
+      emit(OnOpenSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(OnOpenErrorState());
+    });
+  }
+
+  void getDataFromDataBase() {
+    historyList = [];
+    emit(GetLoadingState());
+    database!.rawQuery('SELECT * FROM history').then((value) {
+      // print(value[0]['type'].toString()+"555555555555555555555555555555555555555");
+      value.forEach((element) {
+        historyList.add(element);
+      });
+      emit(GetSuccessState());
+    }).catchError((error) {
+      print(error);
+      emit(GetErrorState());
+    });
+  }
+
+  void insertToDataBase({
+    required String fName,
+    required String type,
+    required String date,
+    required String time,
+    required String result,
+  }) async {
+    emit(InsertLoadingState());
+    await database!.transaction((txn) {
+      return txn
+          .rawInsert(
+              'INSERT INTO history(fName,type, date, time, result) VALUES( "$fName" , "$type" , "$date" , "$time" , "$result" )')
+          .then((value) {
+        getDataFromDataBase();
+      }).catchError((error) {
+        print('err' + error);
+        emit(InsertErrorState());
+      });
+    });
+  }
+
+  void updateData({
+    required String result,
+    required int id,
+  }) {
+    database!.rawUpdate('UPDATE history SET result = ? WHERE id = ?',
+        [result, id]).then((value) {
+      getDataFromDataBase();
+      emit(UpdateSuccessState());
+    }).catchError((error) {
+      emit(UpdateErrorState());
+    });
+  }
+
+  void deleteData({
+    required int id,
+  }) {
+    database!.rawDelete('DELETE FROM history WHERE id = ?', [id]).then((value) {
+      getDataFromDataBase();
+    }).catchError((error) {
+      emit(DeleteErrorState());
+    });
+  }
+
+
 }
