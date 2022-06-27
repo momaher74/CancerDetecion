@@ -89,7 +89,7 @@ class HomeWidget extends StatelessWidget {
                     //     date: "27/6/2022",
                     //     time: "7:12",
                     //     result: "normal");
-                    for(int i =0;i<cubit.historyList.length;i++){
+                    for (int i = 0; i < cubit.historyList.length; i++) {
                       cubit.deleteData(id: cubit.historyList[i]['id']);
                     }
                   },
@@ -99,8 +99,9 @@ class HomeWidget extends StatelessWidget {
                     height: height * .06,
                     padding: EdgeInsets.all(height * .01),
                     decoration: BoxDecoration(
-                        color: HexColor("545FDD"),
-                        borderRadius: BorderRadius.circular(height * .01)),
+                      color: HexColor("545FDD"),
+                      borderRadius: BorderRadius.circular(height * .01),
+                    ),
                     child: Center(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -322,9 +323,11 @@ class HomeWidget extends StatelessWidget {
 }
 
 class CancerTypeWidget extends StatelessWidget {
-  CancerTypeWidget({Key? key, required this.height, required this.cubit})
+  CancerTypeWidget(
+      {Key? key, required this.height, required AppCubit this.cubit})
       : super(key: key);
-  var height, cubit;
+  var height;
+  AppCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -431,13 +434,19 @@ class CancerTypeWidget extends StatelessWidget {
                       width: height * .2,
                       height: height * .05,
                       child: Center(
-                          child: Text("Choice File ",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: height * .018,
-                                  fontWeight: FontWeight.normal))),
+                        child: Text(
+                          "Choice File ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: height * .018,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      cubit.pickFile();
+                    },
                   ),
                   SizedBox(
                     width: height * .006,
@@ -447,12 +456,16 @@ class CancerTypeWidget extends StatelessWidget {
                     width: height * .1,
                     height: height * .05,
                     child: Center(
-                        child: Text("  No File",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: height * .013,
-                                fontWeight: FontWeight.normal,
-                                overflow: TextOverflow.ellipsis))),
+                      child: Text(
+                        "  No File",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: height * .013,
+                          fontWeight: FontWeight.normal,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -460,7 +473,11 @@ class CancerTypeWidget extends StatelessWidget {
                 height: height * .08,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  if(cubit.file!=null){
+                    cubit.uploadFile();
+                  }
+                },
                 child: Container(
                   margin: EdgeInsets.only(right: height * .025),
                   width: height * .4,

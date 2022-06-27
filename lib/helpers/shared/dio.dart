@@ -6,7 +6,7 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'https://cancer-api-2022.herokuapp.com/',
         receiveDataWhenStatusError: true,
       ),
     );
@@ -37,11 +37,11 @@ class DioHelper {
     String lang = 'en',
     String? token,
   }) async {
-    dio.options.headers = {
-      'lang': 'ar',
-      'Content-Type': 'application/json',
-      'Authorization': '$token',
-    };
+    // dio.options.headers = {
+    //   'lang': 'ar',
+    //   'Content-Type': 'application/json',
+    //   'Authorization': '$token',
+    // };
 
     return await dio.post(
       url,
@@ -68,4 +68,6 @@ class DioHelper {
       data: data,
     );
   }
+
+
 }

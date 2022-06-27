@@ -55,4 +55,11 @@ class UpdateSuccessState extends AppState {}
 
 class UpdateErrorState extends AppState {}
 
+class UploadFileLoadingState extends AppState {}
+
+class UploadFileSuccessState extends AppState {}
+
+class UploadFileErrorState extends AppState {}
+
+class PickedFileSuccessState extends AppState {}
 

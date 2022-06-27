@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/helpers/component/component.dart';
+import 'package:hh/helpers/shared/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -175,7 +179,7 @@ class AppCubit extends Cubit<AppState> {
     await openDatabase('history.db', version: 1, onCreate: (database, version) {
       database
           .execute(
-              'create table history (id integer primary key , fName text , type text , date text , time text , result text )')
+          'create table history (id integer primary key , fName text , type text , date text , time text , result text )')
           .then((value) {
         emit(OnCreateSuccessState());
       }).catchError((error) {
@@ -219,7 +223,7 @@ class AppCubit extends Cubit<AppState> {
     await database!.transaction((txn) {
       return txn
           .rawInsert(
-              'INSERT INTO history(fName,type, date, time, result) VALUES( "$fName" , "$type" , "$date" , "$time" , "$result" )')
+          'INSERT INTO history(fName,type, date, time, result) VALUES( "$fName" , "$type" , "$date" , "$time" , "$result" )')
           .then((value) {
         getDataFromDataBase();
       }).catchError((error) {
@@ -249,6 +253,44 @@ class AppCubit extends Cubit<AppState> {
       getDataFromDataBase();
     }).catchError((error) {
       emit(DeleteErrorState());
+    });
+  }
+
+  void deleteAllData({
+    required int id,
+  }) {
+    for (int i = 0; i < historyList.length; i++) {
+      database!
+          .rawDelete('DELETE FROM history WHERE id = ?', [id])
+          .then((value) {})
+          .catchError((error) {
+        emit(DeleteErrorState());
+      });
+    }
+    getDataFromDataBase();
+  }
+
+//api codes
+  File? file;
+
+  pickFile() {
+    FilePicker.platform.pickFiles().then(
+          (value) {
+        file = File(value!.files.single.path!);
+        emit(PickedFileSuccessState());
+      },
+    );
+  }
+
+  void uploadFile() {
+    emit(UploadFileLoadingState());
+    DioHelper.postData(url: "uploadcsv", data:{}, query: {"file": file,}).then((
+        value) {
+      print(value.data);
+      emit(UploadFileSuccessState());
+    }).catchError((error) {
+      print(error);
+      emit(UploadFileErrorState());
     });
   }
 
