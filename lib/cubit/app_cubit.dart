@@ -179,7 +179,7 @@ class AppCubit extends Cubit<AppState> {
     await openDatabase('history.db', version: 1, onCreate: (database, version) {
       database
           .execute(
-          'create table history (id integer primary key , fName text , type text , date text , time text , result text )')
+              'create table history (id integer primary key , fName text , type text , date text , time text , result text )')
           .then((value) {
         emit(OnCreateSuccessState());
       }).catchError((error) {
@@ -223,7 +223,7 @@ class AppCubit extends Cubit<AppState> {
     await database!.transaction((txn) {
       return txn
           .rawInsert(
-          'INSERT INTO history(fName,type, date, time, result) VALUES( "$fName" , "$type" , "$date" , "$time" , "$result" )')
+              'INSERT INTO history(fName,type, date, time, result) VALUES( "$fName" , "$type" , "$date" , "$time" , "$result" )')
           .then((value) {
         getDataFromDataBase();
       }).catchError((error) {
@@ -256,18 +256,12 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-  void deleteAllData({
-    required int id,
-  }) {
-    for (int i = 0; i < historyList.length; i++) {
-      database!
-          .rawDelete('DELETE FROM history WHERE id = ?', [id])
-          .then((value) {})
-          .catchError((error) {
-        emit(DeleteErrorState());
-      });
-    }
-    getDataFromDataBase();
+  void deleteAllData() {
+    database!.delete("history").then((value) {
+      getDataFromDataBase();
+    }).catchError((error) {
+      emit(DeleteErrorState());
+    });
   }
 
 //api codes
@@ -275,7 +269,7 @@ class AppCubit extends Cubit<AppState> {
 
   pickFile() {
     FilePicker.platform.pickFiles().then(
-          (value) {
+      (value) {
         file = File(value!.files.single.path!);
         emit(PickedFileSuccessState());
       },
@@ -284,8 +278,9 @@ class AppCubit extends Cubit<AppState> {
 
   void uploadFile() {
     emit(UploadFileLoadingState());
-    DioHelper.postData(url: "uploadcsv", data:{}, query: {"file": file,}).then((
-        value) {
+    DioHelper.postData(url: "uploadcsv", data: {}, query: {
+      "file": file,
+    }).then((value) {
       print(value.data);
       emit(UploadFileSuccessState());
     }).catchError((error) {
@@ -293,6 +288,4 @@ class AppCubit extends Cubit<AppState> {
       emit(UploadFileErrorState());
     });
   }
-
-
 }

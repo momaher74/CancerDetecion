@@ -84,14 +84,14 @@ class HomeWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     // cubit.insertToDataBase(
-                    //     fName: "s1",
-                    //     type: "colon",
-                    //     date: "27/6/2022",
-                    //     time: "7:12",
-                    //     result: "normal");
-                    for (int i = 0; i < cubit.historyList.length; i++) {
-                      cubit.deleteData(id: cubit.historyList[i]['id']);
-                    }
+                    //   fName: "s1",
+                    //   type: "colon",
+                    //   date: "27/6/2022",
+                    //   time: "7:12",
+                    //   result: "normal",
+                    // );
+                    cubit.deleteAllData();
+
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .04),
@@ -150,10 +150,11 @@ class HomeWidget extends StatelessWidget {
                           child: Text(
                             "Data File name ",
                             style: TextStyle(
-                                fontSize: height * .02,
-                                color: HexColor("545FDD"),
-                                fontWeight: FontWeight.w600,
-                                overflow: TextOverflow.ellipsis),
+                              fontSize: height * .02,
+                              color: HexColor("545FDD"),
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           width: height * .2,
                         ),
@@ -161,10 +162,11 @@ class HomeWidget extends StatelessWidget {
                           child: Text(
                             "Cancer Type ",
                             style: TextStyle(
-                                fontSize: height * .02,
-                                color: HexColor("545FDD"),
-                                fontWeight: FontWeight.w600,
-                                overflow: TextOverflow.ellipsis),
+                              fontSize: height * .02,
+                              color: HexColor("545FDD"),
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           width: height * .2,
                         ),
@@ -172,10 +174,11 @@ class HomeWidget extends StatelessWidget {
                           child: Text(
                             "Date ",
                             style: TextStyle(
-                                fontSize: height * .02,
-                                color: HexColor("545FDD"),
-                                fontWeight: FontWeight.w600,
-                                overflow: TextOverflow.ellipsis),
+                              fontSize: height * .02,
+                              color: HexColor("545FDD"),
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           width: height * .2,
                         ),
@@ -183,10 +186,11 @@ class HomeWidget extends StatelessWidget {
                           child: Text(
                             "Time",
                             style: TextStyle(
-                                fontSize: height * .02,
-                                color: HexColor("545FDD"),
-                                fontWeight: FontWeight.w600,
-                                overflow: TextOverflow.ellipsis),
+                              fontSize: height * .02,
+                              color: HexColor("545FDD"),
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                           width: height * .2,
                         ),
@@ -474,7 +478,7 @@ class CancerTypeWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  if(cubit.file!=null){
+                  if (cubit.file != null) {
                     cubit.uploadFile();
                   }
                 },
