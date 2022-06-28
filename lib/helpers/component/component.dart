@@ -91,7 +91,6 @@ class HomeWidget extends StatelessWidget {
                     //   result: "normal",
                     // );
                     cubit.deleteAllData();
-
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .04),
@@ -126,7 +125,7 @@ class HomeWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
             Container(
@@ -148,11 +147,11 @@ class HomeWidget extends StatelessWidget {
                       children: [
                         SizedBox(
                           child: Text(
-                            "Data File name ",
+                            "File name ",
                             style: TextStyle(
                               fontSize: height * .02,
-                              color: HexColor("545FDD"),
-                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -163,8 +162,8 @@ class HomeWidget extends StatelessWidget {
                             "Cancer Type ",
                             style: TextStyle(
                               fontSize: height * .02,
-                              color: HexColor("545FDD"),
-                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -175,8 +174,8 @@ class HomeWidget extends StatelessWidget {
                             "Date ",
                             style: TextStyle(
                               fontSize: height * .02,
-                              color: HexColor("545FDD"),
-                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -187,8 +186,8 @@ class HomeWidget extends StatelessWidget {
                             "Time",
                             style: TextStyle(
                               fontSize: height * .02,
-                              color: HexColor("545FDD"),
-                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -199,8 +198,8 @@ class HomeWidget extends StatelessWidget {
                             "Result",
                             style: TextStyle(
                                 fontSize: height * .02,
-                                color: HexColor("545FDD"),
-                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
                                 overflow: TextOverflow.ellipsis),
                           ),
                           width: height * .2,
@@ -219,102 +218,105 @@ class HomeWidget extends StatelessWidget {
                       height: height * .01,
                     ),
                     MyDivider(width: height * 1.2, height: height * .001),
-                    if (cubit.historyList.isNotEmpty)
-                      BlocConsumer<AppCubit, AppState>(
-                        builder: (context, state) {
-                          return ListView.separated(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(
-                                    child: Text(
-                                      "${cubit.historyList[index]['fName']}",
-                                      style: TextStyle(
-                                          fontSize: height * .02,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    width: height * .2,
-                                  ),
-                                  SizedBox(
-                                    child: Text(
-                                      "${cubit.historyList[index]['type']}",
-                                      style: TextStyle(
-                                          fontSize: height * .02,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    width: height * .2,
-                                  ),
-                                  SizedBox(
-                                    child: Text(
-                                      "${cubit.historyList[index]['date']}",
-                                      style: TextStyle(
-                                          fontSize: height * .02,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    width: height * .2,
-                                  ),
-                                  SizedBox(
-                                    child: Text(
-                                      "${cubit.historyList[index]['time']}",
-                                      style: TextStyle(
-                                          fontSize: height * .02,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    width: height * .2,
-                                  ),
-                                  SizedBox(
-                                    child: Text(
-                                      "${cubit.historyList[index]['result']}",
-                                      style: TextStyle(
-                                          fontSize: height * .02,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400,
-                                          overflow: TextOverflow.ellipsis),
-                                    ),
-                                    width: height * .2,
-                                  ),
-                                  SizedBox(
-                                    child: IconButton(
-                                        onPressed: () {
-                                          cubit.deleteData(
-                                            id: cubit.historyList[index]['id'],
-                                          );
-                                        },
-                                        icon: Icon(
-                                          Icons.delete,
-                                          color: HexColor("545FDD"),
-                                          size: height * .035,
-                                        )),
-                                    width: height * .2,
-                                  ),
-                                ],
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return MyDivider(
-                                width: height,
-                                height: height * .001,
-                              );
-                            },
-                            itemCount: cubit.historyList.length,
-                          );
-                        },
-                        listener: (context, state) {},
-                      ),
-                    if (cubit.historyList.isEmpty)
-                      const Center(child: Text("there is no history yet"))
+                    BlocConsumer<AppCubit, AppState>(
+                      builder: (context, state) {
+                        return ListView.separated(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return cubit.historyList.isNotEmpty
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      SizedBox(
+                                        child: Text(
+                                          "${cubit.historyList[index]['fName']}",
+                                          style: TextStyle(
+                                              fontSize: height * .02,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
+                                        width: height * .2,
+                                      ),
+                                      SizedBox(
+                                        child: Text(
+                                          "${cubit.historyList[index]['type']}",
+                                          style: TextStyle(
+                                              fontSize: height * .02,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
+                                        width: height * .2,
+                                      ),
+                                      SizedBox(
+                                        child: Text(
+                                          "${cubit.historyList[index]['date']}",
+                                          style: TextStyle(
+                                              fontSize: height * .02,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
+                                        width: height * .2,
+                                      ),
+                                      SizedBox(
+                                        child: Text(
+                                          "${cubit.historyList[index]['time']}",
+                                          style: TextStyle(
+                                              fontSize: height * .02,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
+                                        width: height * .2,
+                                      ),
+                                      SizedBox(
+                                        child: Text(
+                                          "${cubit.historyList[index]['result']}",
+                                          style: TextStyle(
+                                              fontSize: height * .02,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.normal,
+                                              overflow: TextOverflow.ellipsis),
+                                        ),
+                                        width: height * .2,
+                                      ),
+                                      SizedBox(
+                                        child: IconButton(
+                                            onPressed: () {
+                                              cubit.deleteData(
+                                                id: cubit.historyList[index]
+                                                    ['id'],
+                                              );
+                                            },
+                                            icon: Icon(
+                                              Icons.delete,
+                                              color: HexColor("545FDD"),
+                                              size: height * .035,
+                                            )),
+                                        width: height * .2,
+                                      ),
+                                    ],
+                                  )
+                                : const Center(
+                                    child: Text("there is no history yet"));
+                          },
+                          separatorBuilder: (context, index) {
+                            return MyDivider(
+                              width: height,
+                              height: height * .001,
+                            );
+                          },
+                          itemCount: cubit.historyList.isNotEmpty
+                              ? cubit.historyList.length
+                              : 1,
+                        );
+                      },
+                      listener: (context, state) {},
+                    ),
                   ],
                 ),
               ),
@@ -481,6 +483,7 @@ class CancerTypeWidget extends StatelessWidget {
                   if (cubit.file != null) {
                     cubit.uploadFile();
                   }
+
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: height * .025),
