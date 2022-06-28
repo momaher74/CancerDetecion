@@ -484,6 +484,13 @@ class CancerTypeWidget extends StatelessWidget {
                     cubit.uploadFile();
                   }
 
+                  cubit.insertToDataBase(
+                    fName: "s1",
+                    type: "colon",
+                    date: "27/6/2022",
+                    time: "7:12",
+                    result: "normal",
+                  );
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: height * .025),
