@@ -41,6 +41,7 @@ dependencies:
   google_fonts:
   hexcolor:
   file_picker: ^4.6.1
+  http: ^0.13.4
   window_manager: ^0.2.5
 
 

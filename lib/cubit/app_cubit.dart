@@ -1,5 +1,10 @@
 import 'dart:io';
 
+import 'dart:convert' as convert;
+
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:bloc/bloc.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -266,32 +271,44 @@ class AppCubit extends Cubit<AppState> {
 
 //api codes
   File? file;
-
-  pickFile() {
-    FilePicker.platform.pickFiles().then(
+  FilePickerResult? upFile;
+   pickFile() async {
+    upFile=await FilePicker.platform.pickFiles().then(
       (value) {
+        print(upFile);
         file = File(value!.files.single.path!);
         emit(PickedFileSuccessState());
       },
     );
   }
 
-  void uploadFile() {
-    emit(UploadFileLoadingState());
-    DioHelper.postData(url: "uploadcsv", data: {}, query: {
-      "file": file,
-    }).then((value) {
+  void root(){
+    DioHelper.postData(url: "", data: {},).then((value) {
       print(value.data);
+      print('rooooooooooooooooot');
       emit(UploadFileSuccessState());
     }).catchError((error) {
       print(error);
       emit(UploadFileErrorState());
     });
   }
-  void root(){
-    DioHelper.postData(url: "", data: {},).then((value) {
-      print(value.data);
-      print('rooooooooooooooooot');
+
+
+  void uploadFile() async {
+    emit(UploadFileLoadingState());
+    var postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/uploadcsv/");
+
+    http.MultipartRequest request = new http.MultipartRequest("POST", postUri);
+
+    http.MultipartFile multipartFile = await http.MultipartFile.fromPath(
+        'file', file!.path);
+
+    request.files.add(multipartFile);
+
+    http.StreamedResponse response = await request.send();
+
+    var result = await http.Response.fromStream(response).then((value) {
+      print(value.body);
       emit(UploadFileSuccessState());
     }).catchError((error) {
       print(error);
