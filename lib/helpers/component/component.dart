@@ -483,10 +483,9 @@ class CancerTypeWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      if (cubit.file != null) {
+                      if (cubit.file != null&&cubit.model!=null) {
                         cubit.uploadFile();
                       }
-                      //
                       // cubit.insertToDataBase(
                       //   fName: "s1",
                       //   type: "colon",
