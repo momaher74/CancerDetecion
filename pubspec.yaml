@@ -42,6 +42,7 @@ dependencies:
   hexcolor:
   file_picker: ^4.6.1
   window_manager: ^0.2.5
+  http: ^0.13.4
 
 
 

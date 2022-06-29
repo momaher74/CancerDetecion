@@ -25,6 +25,7 @@ class HomeScreen extends StatelessWidget {
                 width: height * .45,
                 height: height,
                 child: SingleChildScrollView(
+                  physics:const NeverScrollableScrollPhysics(),
                   child: Column(
                     children: [
                       SizedBox(
@@ -92,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               padding: EdgeInsets.all(height * .02),
                               width: height * .35,
-                              height: height * .06,
+                              height: height * .065,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [

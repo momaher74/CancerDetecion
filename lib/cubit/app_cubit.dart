@@ -8,7 +8,9 @@ import 'package:hh/helpers/component/component.dart';
 import 'package:hh/helpers/shared/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:convert' as convert;
 
+import 'package:http/http.dart' as http;
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -289,16 +291,20 @@ class AppCubit extends Cubit<AppState> {
     );
   }
 
-  void uploadFile() {
-    emit(UploadFileLoadingState());
-    DioHelper.postData(url: "uploadcsv", data: {
-      "file": file,
-    }).then((value) {
-      print(value.data);
-      emit(UploadFileSuccessState());
-    }).catchError((error) {
-      print(error);
-      emit(UploadFileErrorState());
-    });
-  }
+  void uploadFile()async {
+    emit(UploadFileSuccessState());
+    var postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/uploadcsv/");
+
+    http.MultipartRequest request =  http.MultipartRequest("POST", postUri);
+
+    http.MultipartFile multipartFile = await http.MultipartFile.fromPath(
+        'file', file!.path);
+
+    request.files.add(multipartFile);
+
+    http.StreamedResponse response = await request.send();
+
+    var result = await http.Response.fromStream(response);
+    emit(UploadFileSuccessState());
+    print(result.body);
 }
