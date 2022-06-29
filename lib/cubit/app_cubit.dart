@@ -20,6 +20,8 @@ class AppCubit extends Cubit<AppState> {
   //navigation codes
 
   String cancerType = "";
+  String? model;
+
   bool homeSelect = true;
   bool featureSelect = false;
   bool colonSelect = false;
@@ -62,6 +64,7 @@ class AppCubit extends Cubit<AppState> {
     contactSelect = false;
     exitSelect = false;
     cancerType = "Colon Cancer";
+    model = 'colon';
     screen = CancerTypeWidget(height: height, cubit: cubit);
     emit(ChangeColonSuccessState());
   }
@@ -91,6 +94,7 @@ class AppCubit extends Cubit<AppState> {
     contactSelect = false;
     exitSelect = false;
     cancerType = "Liver Cancer";
+    model = 'liver';
     screen = CancerTypeWidget(height: height, cubit: cubit);
 
     emit(ChangeLiverSuccessState());
@@ -107,6 +111,8 @@ class AppCubit extends Cubit<AppState> {
     contactSelect = false;
     exitSelect = false;
     cancerType = "Lung Cancer";
+    model = 'lung';
+
     screen = CancerTypeWidget(height: height, cubit: cubit);
 
     emit(ChangeLungSuccessState());
@@ -123,6 +129,8 @@ class AppCubit extends Cubit<AppState> {
     contactSelect = false;
     exitSelect = false;
     cancerType = "Leukemia Cancer";
+    model = 'leukemia';
+
     screen = CancerTypeWidget(height: height, cubit: cubit);
 
     emit(ChangeLeukemiaSuccessState());
@@ -139,6 +147,8 @@ class AppCubit extends Cubit<AppState> {
     contactSelect = false;
     exitSelect = false;
     cancerType = "Breast Cancer";
+    model = 'breast';
+
     screen = CancerTypeWidget(height: height, cubit: cubit);
 
     emit(ChangeBreastSuccessState());
@@ -267,14 +277,15 @@ class AppCubit extends Cubit<AppState> {
 
 //api codes
   File? file;
-  String ? fileName;
+  String? fileName;
+
   pickFile() {
     FilePicker.platform.pickFiles().then(
       (value) {
         file = File(value!.files.single.path!);
         fileName = value.files.single.name;
         emit(PickedFileSuccessState());
-      },some
+      },
     );
   }
 
