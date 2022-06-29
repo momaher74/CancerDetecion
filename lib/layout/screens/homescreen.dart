@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           cubit.changeFeatureSelect(
-                              height: height, cubit: context);
+                              height: height, cubit: cubit);
                         },
                         child: Row(
                           children: [

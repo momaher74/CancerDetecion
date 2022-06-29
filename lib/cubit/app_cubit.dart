@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -266,19 +267,20 @@ class AppCubit extends Cubit<AppState> {
 
 //api codes
   File? file;
-
+  String ? fileName;
   pickFile() {
     FilePicker.platform.pickFiles().then(
       (value) {
         file = File(value!.files.single.path!);
+        fileName = value.files.single.name;
         emit(PickedFileSuccessState());
-      },
+      },some
     );
   }
 
   void uploadFile() {
     emit(UploadFileLoadingState());
-    DioHelper.postData(url: "uploadcsv", data: {}, query: {
+    DioHelper.postData(url: "uploadcsv", data: {
       "file": file,
     }).then((value) {
       print(value.data);

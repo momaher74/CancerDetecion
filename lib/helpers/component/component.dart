@@ -34,14 +34,14 @@ class HomeWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: height * .03,
-        ),
         Container(
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: height * .03,
+              ),
               Text(
                 "    Welcome Back",
                 style: TextStyle(
@@ -337,214 +337,220 @@ class CancerTypeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: height * .128,
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: height * .05,
-              ),
-              Text(
-                "   " + cubit.cancerType,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: height * .025,
-                    fontWeight: FontWeight.w400),
-              )
-            ],
-          ),
-        ),
-        SizedBox(
-          height: height * .04,
-        ),
-        Row(
+    return BlocConsumer<AppCubit, AppState>(
+      builder: (context, state) {
+        return Column(
           children: [
-            const Spacer(),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                margin: EdgeInsets.only(right: height * .025),
-                width: height * .28,
-                height: height * .06,
-                padding: EdgeInsets.all(height * .01),
-                decoration: BoxDecoration(
-                    color: HexColor("545FDD"),
-                    borderRadius: BorderRadius.circular(height * .01)),
-                child: Center(
-                  child: Row(
+            Container(
+              width: double.infinity,
+              height: height * .128,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height * .05,
+                  ),
+                  Text(
+                    "   " + cubit.cancerType,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: height * .025,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height * .04,
+            ),
+            Row(
+              children: [
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(right: height * .025),
+                    width: height * .28,
+                    height: height * .06,
+                    padding: EdgeInsets.all(height * .01),
+                    decoration: BoxDecoration(
+                        color: HexColor("545FDD"),
+                        borderRadius: BorderRadius.circular(height * .01)),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.refresh,
+                            size: height * .03,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: height * .014,
+                          ),
+                          Text(
+                            "Refresh ",
+                            style: TextStyle(
+                              fontSize: height * .02,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: height * .04,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: height * .04,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height * .02),
+                color: Colors.white,
+              ),
+              width: height * 1.2,
+              height: height * .65,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: height * .04,
+                  ),
+                  Text(
+                    "Please Upload your CSV Data File",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: height * .025,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(
+                    height: height * .04,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.refresh,
-                        size: height * .03,
-                        color: Colors.white,
+                      GestureDetector(
+                        child: Container(
+                          color: HexColor("CBCCCE"),
+                          width: height * .2,
+                          height: height * .05,
+                          child: Center(
+                            child: Text(
+                              "Choice File ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: height * .018,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          cubit.pickFile();
+                        },
                       ),
                       SizedBox(
-                        width: height * .014,
+                        width: height * .006,
                       ),
-                      Text(
-                        "Refresh ",
-                        style: TextStyle(
-                          fontSize: height * .02,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                      Container(
+                        color: HexColor("E2E9F5"),
+                        width: height * .1,
+                        height: height * .05,
+                        child: Center(
+                          child: Text(
+                            cubit.fileName ?? "  No File",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: height * .013,
+                              fontWeight: FontWeight.normal,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              width: height * .04,
-            ),
-          ],
-        ),
-        SizedBox(
-          height: height * .04,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(height * .02),
-            color: Colors.white,
-          ),
-          width: height * 1.2,
-          height: height * .65,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: height * .04,
-              ),
-              Text(
-                "Please Upload your CSV Data File",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: height * .025,
-                    fontWeight: FontWeight.normal),
-              ),
-              SizedBox(
-                height: height * .04,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                  SizedBox(
+                    height: height * .08,
+                  ),
                   GestureDetector(
+                    onTap: () {
+                      if (cubit.file != null) {
+                        cubit.uploadFile();
+                      }
+                      //
+                      // cubit.insertToDataBase(
+                      //   fName: "s1",
+                      //   type: "colon",
+                      //   date: "27/6/2022",
+                      //   time: "7:12",
+                      //   result: "normal",
+                      // );
+                    },
                     child: Container(
-                      color: HexColor("CBCCCE"),
-                      width: height * .2,
-                      height: height * .05,
+                      margin: EdgeInsets.only(right: height * .025),
+                      width: height * .4,
+                      height: height * .065,
+                      padding: EdgeInsets.all(height * .01),
+                      decoration: BoxDecoration(
+                          color: HexColor("545FDD"),
+                          borderRadius: BorderRadius.circular(height * .01)),
                       child: Center(
                         child: Text(
-                          "Choice File ",
+                          "Get Result",
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: height * .018,
-                            fontWeight: FontWeight.normal,
+                            fontSize: height * .02,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                     ),
-                    onTap: () {
-                      cubit.pickFile();
-                    },
                   ),
                   SizedBox(
-                    width: height * .006,
-                  ),
-                  Container(
-                    color: HexColor("E2E9F5"),
-                    width: height * .1,
                     height: height * .05,
-                    child: Center(
-                      child: Text(
-                        "  No File",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: height * .013,
-                          fontWeight: FontWeight.normal,
-                          overflow: TextOverflow.ellipsis,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Align(
+                        child: Text(
+                          "     Result",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: height * .03,
+                              fontWeight: FontWeight.w400),
                         ),
+                        alignment: Alignment(-.5, 0),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * .08,
-              ),
-              GestureDetector(
-                onTap: () {
-                  if (cubit.file != null) {
-                    cubit.uploadFile();
-                  }
-
-                  cubit.insertToDataBase(
-                    fName: "s1",
-                    type: "colon",
-                    date: "27/6/2022",
-                    time: "7:12",
-                    result: "normal",
-                  );
-                },
-                child: Container(
-                  margin: EdgeInsets.only(right: height * .025),
-                  width: height * .4,
-                  height: height * .065,
-                  padding: EdgeInsets.all(height * .01),
-                  decoration: BoxDecoration(
-                      color: HexColor("545FDD"),
-                      borderRadius: BorderRadius.circular(height * .01)),
-                  child: Center(
-                    child: Text(
-                      "Get Result",
-                      style: TextStyle(
-                        fontSize: height * .02,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                      SizedBox(
+                        height: height * .01,
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * .05,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    child: Text(
-                      "     Result",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: height * .03,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    alignment: Alignment(-.5, 0),
-                  ),
-                  SizedBox(
-                    height: height * .01,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(height * .015),
-                      color: HexColor("CDD5EB"),
-                    ),
-                    width: height * .6,
-                    height: height * .2,
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(height * .015),
+                          color: HexColor("CDD5EB"),
+                        ),
+                        width: height * .6,
+                        height: height * .2,
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
-        ),
-      ],
+              ),
+            ),
+          ],
+        );
+      },
+      listener: (context, state) {},
     );
   }
 }
@@ -552,205 +558,221 @@ class CancerTypeWidget extends StatelessWidget {
 class FeatureSelectionWidgets extends StatelessWidget {
   FeatureSelectionWidgets({Key? key, required this.height, required this.cubit})
       : super(key: key);
-  var height, cubit;
+  var height;
+  AppCubit? cubit;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          height: height * .128,
-          color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: height * .05,
-              ),
-              Text(
-                "    Feature Selection",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: height * .025,
-                    fontWeight: FontWeight.w400),
-              )
-            ],
-          ),
-        ),
-        SizedBox(
-          height: height * .04,
-        ),
-        Row(
+    return BlocConsumer<AppCubit,AppState>(
+      builder: (context, state) {
+        return Column(
           children: [
-            const Spacer(),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                margin: EdgeInsets.only(right: height * .025),
-                width: height * .28,
-                height: height * .06,
-                padding: EdgeInsets.all(height * .01),
-                decoration: BoxDecoration(
-                    color: HexColor("545FDD"),
-                    borderRadius: BorderRadius.circular(height * .01)),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.refresh,
-                        size: height * .03,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: height * .014,
-                      ),
-                      Text(
-                        "Refresh ",
-                        style: TextStyle(
-                          fontSize: height * .02,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
+            Container(
+              width: double.infinity,
+              height: height * .128,
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height * .05,
                   ),
-                ),
+                  Text(
+                    "    Feature Selection",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: height * .025,
+                        fontWeight: FontWeight.w400),
+                  )
+                ],
               ),
             ),
             SizedBox(
-              width: height * .04,
+              height: height * .04,
             ),
-          ],
-        ),
-        SizedBox(
-          height: height * .04,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(height * .02),
-            color: Colors.white,
-          ),
-          width: height * 1.2,
-          height: height * .65,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: height * .04,
-              ),
-              Text(
-                "Please Upload your CSV Data File",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: height * .025,
-                    fontWeight: FontWeight.normal),
-              ),
-              SizedBox(
-                height: height * .04,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    child: Container(
-                      color: HexColor("CBCCCE"),
-                      width: height * .2,
-                      height: height * .05,
-                      child: Center(
-                          child: Text("Choice File ",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: height * .018,
-                                  fontWeight: FontWeight.normal))),
-                    ),
-                    onTap: () {},
-                  ),
-                  SizedBox(
-                    width: height * .006,
-                  ),
-                  Container(
-                    color: HexColor("E2E9F5"),
-                    width: height * .1,
-                    height: height * .05,
+            Row(
+              children: [
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    margin: EdgeInsets.only(right: height * .025),
+                    width: height * .28,
+                    height: height * .06,
+                    padding: EdgeInsets.all(height * .01),
+                    decoration: BoxDecoration(
+                        color: HexColor("545FDD"),
+                        borderRadius: BorderRadius.circular(height * .01)),
                     child: Center(
-                        child: Text("  No File",
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.refresh,
+                            size: height * .03,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: height * .014,
+                          ),
+                          Text(
+                            "Refresh ",
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: height * .013,
-                                fontWeight: FontWeight.normal,
-                                overflow: TextOverflow.ellipsis))),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: height * .08,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: height * .025),
-                  width: height * .4,
-                  height: height * .065,
-                  padding: EdgeInsets.all(height * .01),
-                  decoration: BoxDecoration(
-                      color: HexColor("545FDD"),
-                      borderRadius: BorderRadius.circular(height * .01)),
-                  child: Center(
-                    child: Text(
-                      "Feature Selection",
-                      style: TextStyle(
-                        fontSize: height * .02,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                              fontSize: height * .02,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
+                SizedBox(
+                  width: height * .04,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: height * .04,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height * .02),
+                color: Colors.white,
               ),
-              SizedBox(
-                height: height * .05,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: height * .025),
-                  width: height * .4,
-                  height: height * .065,
-                  padding: EdgeInsets.all(height * .01),
-                  decoration: BoxDecoration(
-                      color: HexColor("2A3079"),
-                      borderRadius: BorderRadius.circular(height * .01)),
-                  child: Row(
+              width: height * 1.2,
+              height: height * .65,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: height * .04,
+                  ),
+                  Text(
+                    "Please Upload your CSV Data File",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: height * .025,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(
+                    height: height * .04,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      GestureDetector(
+                        child: Container(
+                          color: HexColor("CBCCCE"),
+                          width: height * .2,
+                          height: height * .05,
+                          child: Center(
+                            child: Text(
+                              "Choice File ",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: height * .018,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          cubit!.pickFile();
+                        },
+                      ),
                       SizedBox(
+                        width: height * .006,
+                      ),
+                      Container(
+                        color: HexColor("E2E9F5"),
                         width: height * .1,
-                      ),
-                      Icon(
-                        Icons.file_copy_sharp,
-                        size: height * .03,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: height * .02,
-                      ),
-                      Text(
-                        "Copy File",
-                        style: TextStyle(
-                          fontSize: height * .02,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                        height: height * .05,
+                        child: Center(
+                          child: Text(
+                            cubit!.fileName ?? "  No File",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: height * .013,
+                              fontWeight: FontWeight.normal,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
+                  SizedBox(
+                    height: height * .08,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: EdgeInsets.only(right: height * .025),
+                      width: height * .4,
+                      height: height * .065,
+                      padding: EdgeInsets.all(height * .01),
+                      decoration: BoxDecoration(
+                          color: HexColor("545FDD"),
+                          borderRadius: BorderRadius.circular(height * .01)),
+                      child: Center(
+                        child: Text(
+                          "Feature Selection",
+                          style: TextStyle(
+                            fontSize: height * .02,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * .05,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      margin: EdgeInsets.only(right: height * .025),
+                      width: height * .4,
+                      height: height * .065,
+                      padding: EdgeInsets.all(height * .01),
+                      decoration: BoxDecoration(
+                          color: HexColor("2A3079"),
+                          borderRadius: BorderRadius.circular(height * .01)),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: height * .1,
+                          ),
+                          Icon(
+                            Icons.file_copy_sharp,
+                            size: height * .03,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: height * .02,
+                          ),
+                          Text(
+                            "Copy File",
+                            style: TextStyle(
+                              fontSize: height * .02,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ],
+            ),
+          ],
+        );
+      },
+      listener: (context, state) {},
     );
   }
 }
