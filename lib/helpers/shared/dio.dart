@@ -22,7 +22,6 @@ class DioHelper {
       'lang': 'ar',
       'Content-Type': 'application/json',
       'Authorization': '$token',
-
     };
     return await dio.get(
       url,
@@ -32,7 +31,7 @@ class DioHelper {
 
   static Future<Response> postData({
     required String url,
-    required Map<String, dynamic> data,
+     Map<String, dynamic> ? data,
     Map<String, dynamic>? query,
     String lang = 'en',
     String? token,
@@ -40,7 +39,6 @@ class DioHelper {
     // dio.options.headers = {
     //   'lang': 'ar',
     //   'Content-Type': 'application/json',
-    //   'Authorization': '$token',
     // };
 
     return await dio.post(
@@ -68,6 +66,4 @@ class DioHelper {
       data: data,
     );
   }
-
-
 }

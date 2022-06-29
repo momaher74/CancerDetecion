@@ -266,11 +266,10 @@ class AppCubit extends Cubit<AppState> {
 
 //api codes
   File? file;
-  FilePickerResult? upFile;
-   pickFile() async {
-    upFile=await FilePicker.platform.pickFiles().then(
+
+  pickFile() {
+    FilePicker.platform.pickFiles().then(
       (value) {
-        print(upFile);
         file = File(value!.files.single.path!);
         emit(PickedFileSuccessState());
       },
@@ -279,7 +278,9 @@ class AppCubit extends Cubit<AppState> {
 
   void uploadFile() {
     emit(UploadFileLoadingState());
-    DioHelper.postData(url: "uploadcsv", data: {"file": upFile},).then((value) {
+    DioHelper.postData(url: "uploadcsv", data: {}, query: {
+      "file": file,
+    }).then((value) {
       print(value.data);
       emit(UploadFileSuccessState());
     }).catchError((error) {
