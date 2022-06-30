@@ -379,7 +379,10 @@ class CancerTypeWidget extends StatelessWidget {
               children: [
                 const Spacer(),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    cubit.refresh();
+                    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrre');
+                  },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .025),
                     width: height * .28,
@@ -629,7 +632,10 @@ class FeatureSelectionWidgets extends StatelessWidget {
               children: [
                 const Spacer(),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    cubit!.refresh();
+                    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrre');
+                  },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .025),
                     width: height * .28,

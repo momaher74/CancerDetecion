@@ -245,4 +245,11 @@ class AppCubit extends Cubit<AppState> {
       result = "The model is wrong value";
     }
   }
+
+  void refresh() {
+    file = null;
+    fileName = null;
+    result = null;
+    emit(RefreshSuccessState());
+  }
 }
