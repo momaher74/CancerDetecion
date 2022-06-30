@@ -5,12 +5,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/helpers/component/component.dart';
-import 'package:hh/helpers/shared/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:sqflite/sqflite.dart';
-import 'dart:convert' as convert;
 
 import 'package:http/http.dart' as http;
+
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -66,6 +65,7 @@ class AppCubit extends Cubit<AppState> {
     exitSelect = false;
     cancerType = "Colon Cancer";
     model = 'colon';
+
     screen = CancerTypeWidget(height: height, cubit: cubit);
     emit(ChangeColonSuccessState());
   }
@@ -291,20 +291,52 @@ class AppCubit extends Cubit<AppState> {
     );
   }
 
-  void uploadFile()async {
-    emit(UploadFileSuccessState());
-    var postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/uploadcsv/");
+  var postUri;
+  String? result;
 
-    http.MultipartRequest request =  http.MultipartRequest("POST", postUri);
+  void uploadFile() async {
+    emit(UploadFileLoadingState());
+    print(model);
+    if (model == "lung") {
+      postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/detectLung/");
+    } else if (model == "leukemia") {
+      postUri =
+          Uri.parse("https://cancer-api-2022.herokuapp.com/detectLeukemia/");
+    } else if (model == "breast") {
+      postUri =
+          Uri.parse("https://cancer-api-2022.herokuapp.com/detectBreast/");
+    } else if (model == "colon") {
+      postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/detectColon/");
+    } else if (model == "liver") {
+      postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/detectLiver/");
+    }
 
-    http.MultipartFile multipartFile = await http.MultipartFile.fromPath(
-        'file', file!.path);
+    if (model == "lung" ||
+        model == "colon" ||
+        model == "breast" ||
+        model == "leukemia" ||
+        model == "liver") {
+      http.MultipartRequest request = http.MultipartRequest("POST", postUri);
 
-    request.files.add(multipartFile);
+      http.MultipartFile multipartFile =
+          await http.MultipartFile.fromPath('file', file!.path);
 
-    http.StreamedResponse response = await request.send();
+      request.files.add(multipartFile);
 
-    var result = await http.Response.fromStream(response);
-    emit(UploadFileSuccessState());
-    print(result.body);
+      http.StreamedResponse response = await request.send();
+
+      http.Response.fromStream(response).then((value) {
+        if (value.body == '{"prediction":"Normal"}') {
+          result = "Normal";
+        } else if (value.body == '{"prediction":"Tumoral "}') {
+          result = "Tumoral";
+        }
+        emit(UploadFileSuccessState());
+      }).catchError((error) {
+        emit(UploadFileErrorState());
+      });
+    } else {
+      result = "The model is wrong value";
+    }
+  }
 }

@@ -550,6 +550,7 @@ class CancerTypeWidget extends StatelessWidget {
                         ),
                         width: height * .6,
                         height: height * .2,
+                        child: Center(child: cubit.result==null?Text(""):Text(cubit.result!),),
                       )
                     ],
                   )

@@ -14,7 +14,10 @@ class HomeScreen extends StatelessWidget {
     // var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     var cubit = AppCubit.get(context);
-    cubit.screen = HomeWidget(height: height,cubit: cubit,);
+    cubit.screen = HomeWidget(
+      height: height,
+      cubit: cubit,
+    );
     return BlocConsumer<AppCubit, AppState>(
       builder: (context, state) {
         return Scaffold(
@@ -25,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 width: height * .45,
                 height: height,
                 child: SingleChildScrollView(
-                  physics:const NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   child: Column(
                     children: [
                       SizedBox(
@@ -69,7 +72,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          cubit.changeHomeSelect(height: height,cubit: cubit);
+                          cubit.changeHomeSelect(height: height, cubit: cubit);
                         },
                         child: Row(
                           children: [
@@ -367,11 +370,12 @@ class HomeScreen extends StatelessWidget {
                                   Text(
                                     ' Liver cancer',
                                     style: TextStyle(
-                                        fontSize: height * .02,
-                                        fontWeight: FontWeight.w400,
-                                        color: cubit.liverSelect == true
-                                            ? Colors.white
-                                            : Colors.black),
+                                      fontSize: height * .02,
+                                      fontWeight: FontWeight.w400,
+                                      color: cubit.liverSelect == true
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -683,9 +687,7 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       },
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
     );
   }
 }

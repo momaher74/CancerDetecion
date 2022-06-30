@@ -12,17 +12,17 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await CacheHelper.init();
-  windowManager.waitUntilReadyToShow().then((_) async {
-    await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-    await windowManager.setBackgroundColor(Colors.transparent);
-    await windowManager.setSize(const Size(800, 600));
-    await windowManager.setMinimumSize(const Size(800, 600));
-    await windowManager.setMaximumSize(const Size(double.infinity, double.infinity));
-    await windowManager.center();
-    await windowManager.show();
-    await windowManager.focus();
-    await windowManager.setSkipTaskbar(false);
-  });
+  // windowManager.waitUntilReadyToShow().then((_) async {
+  //   await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
+  //   await windowManager.setBackgroundColor(Colors.transparent);
+  //   await windowManager.setSize(const Size(800, 600));
+  //   await windowManager.setMinimumSize(const Size(800, 600));
+  //   await windowManager.setMaximumSize(const Size(double.infinity, double.infinity));
+  //   await windowManager.center();
+  //   await windowManager.show();
+  //   await windowManager.focus();
+  //   await windowManager.setSkipTaskbar(false);
+  // });
   BlocOverrides.runZoned(
         () => runApp(const MyApp()),
     blocObserver: AppBlocObserver(),
