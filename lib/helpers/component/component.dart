@@ -543,15 +543,32 @@ class CancerTypeWidget extends StatelessWidget {
                       SizedBox(
                         height: height * .01,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(height * .015),
-                          color: HexColor("CDD5EB"),
+                      if(state is! UploadFileLoadingState)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(height * .015),
+                            color: HexColor("CDD5EB"),
+                          ),
+                          width: height * .6,
+                          height: height * .2,
+                          child: Center(child: cubit.result == null
+                              ? Text("")
+                              : Text(cubit.result!),),
                         ),
-                        width: height * .6,
-                        height: height * .2,
-                        child: Center(child: cubit.result==null?Text(""):Text(cubit.result!),),
-                      )
+                      if(state is UploadFileLoadingState)
+                        Container(
+                          padding:const EdgeInsets.symmetric(horizontal: 20),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(height * .015),
+                            color: HexColor("CDD5EB"),
+                          ),
+                          width: height * .6,
+                          height: height * .2,
+                          child: const Center(
+                              child:LinearProgressIndicator(
+                                color: Colors.blue,
+                              )),
+                        ),
                     ],
                   )
                 ],
