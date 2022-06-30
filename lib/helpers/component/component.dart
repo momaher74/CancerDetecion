@@ -564,9 +564,9 @@ class CancerTypeWidget extends StatelessWidget {
                           ),
                           width: height * .6,
                           height: height * .2,
-                          child: const Center(
+                          child:  Center(
                               child:LinearProgressIndicator(
-                                color: Colors.blue,
+                                color: HexColor("545FDD"),
                               )),
                         ),
                     ],
