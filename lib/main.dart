@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/cubit/app_cubit.dart';
-import 'package:hh/helpers/shared/dio.dart';
-import 'package:hh/helpers/shared/sharedpref.dart';
 import 'package:hh/layout/screens/homescreen.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -10,8 +8,7 @@ import 'cubit/observar.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  DioHelper.init();
-  await CacheHelper.init();
+
   // windowManager.waitUntilReadyToShow().then((_) async {
   //   await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
   //   await windowManager.setBackgroundColor(Colors.transparent);
@@ -35,7 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  BlocProvider<AppCubit>(
-      create: (context)=>AppCubit()..root(),
+      create: (context)=>AppCubit(),
       child: BlocConsumer<AppCubit,AppState>(
         listener: (context , state){},
         builder: (context , state ){
