@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/cubit/app_cubit.dart';
 import 'package:hh/layout/screens/homescreen.dart';
+import 'package:hh/layout/screens/selectscreen.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'cubit/observar.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         builder: (context , state ){
           return const MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: HomeScreen(),
+            home: SelectScreen(),
           ) ;
         },
       ),

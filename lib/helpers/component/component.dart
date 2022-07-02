@@ -381,7 +381,6 @@ class CancerTypeWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     cubit.refresh();
-                    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrre');
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .025),
@@ -571,10 +570,10 @@ class CancerTypeWidget extends StatelessWidget {
                           height: height * .2,
                           child: Center(
                             child: SizedBox(
-                              width: height*.045,
-                              height: height*.045,
+                              width: height * .045,
+                              height: height * .045,
                               child: CircularProgressIndicator(
-                                strokeWidth: height*.006,
+                                strokeWidth: height * .006,
                                 color: HexColor("545FDD"),
                               ),
                             ),
@@ -634,7 +633,6 @@ class FeatureSelectionWidgets extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     cubit!.refresh();
-                    print('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrre');
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: height * .025),
