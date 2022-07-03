@@ -17,6 +17,17 @@ class AppCubit extends Cubit<AppState> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   //navigation codes
+  int currentIndex = 0;
+
+  void changeIndex({required int index}) {
+    currentIndex = index;
+    emit(ChangeIndexSuccessState());
+  }
+
+  void changeToResult() {
+    currentIndex = 1;
+    emit(ChangeResultSuccessState());
+  }
 
   String cancerType = "";
   String? model;
@@ -45,11 +56,21 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
-    screen = HomeWidget(
-      height: height,
-      cubit: cubit,
-    );
+
     emit(ChangeHomeSuccessState());
+  }
+
+  void changeFeatureSelect({required height, required cubit}) {
+    homeSelect = false;
+    featureSelect = true;
+    colonSelect = false;
+    breastSelect = false;
+    liverSelect = false;
+    lungSelect = false;
+    leukemiaSelect = false;
+    contactSelect = false;
+    exitSelect = false;
+    emit(ChangeFeatureSuccessState());
   }
 
   void changeColonSelect({required height, required cubit}) {
@@ -67,20 +88,6 @@ class AppCubit extends Cubit<AppState> {
 
     screen = CancerTypeWidget(height: height, cubit: cubit);
     emit(ChangeColonSuccessState());
-  }
-
-  void changeFeatureSelect({required height, required cubit}) {
-    homeSelect = false;
-    featureSelect = true;
-    colonSelect = false;
-    breastSelect = false;
-    liverSelect = false;
-    lungSelect = false;
-    leukemiaSelect = false;
-    contactSelect = false;
-    exitSelect = false;
-    screen = FeatureSelectionWidgets(height: height, cubit: cubit);
-    emit(ChangeFeatureSuccessState());
   }
 
   void changeLiverSelect({required height, required cubit}) {
@@ -185,6 +192,7 @@ class AppCubit extends Cubit<AppState> {
 //api codes
 
   File? file;
+
   String? fileName;
 
   pickFile() {
@@ -198,6 +206,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   var postUri;
+
   String? result;
 
   void uploadFile() async {
@@ -232,12 +241,14 @@ class AppCubit extends Cubit<AppState> {
       http.StreamedResponse response = await request.send();
 
       http.Response.fromStream(response).then((value) {
+        print(value.body);
+        print(value.body.runtimeType);
         if (value.body == '{"prediction":"Normal"}') {
           result = "Normal";
-        } else if (value.body == '{"prediction":"Tumoral "}') {
+        } else if (value.body == '{"prediction":"Tumoral"}') {
           result = "Tumoral";
         }
-        emit(UploadFileSuccessState());
+        changeToResult();
       }).catchError((error) {
         emit(UploadFileErrorState());
       });

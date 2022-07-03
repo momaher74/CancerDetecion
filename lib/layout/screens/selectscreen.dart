@@ -9,7 +9,10 @@ class SelectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
     var cubit = AppCubit.get(context);
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
@@ -93,14 +96,13 @@ class SelectScreen extends StatelessWidget {
                                     height: height,
                                     cubit: cubit,
                                   );
-
                                 },
                                 child: Container(
                                   width: height,
                                   height: height * .07,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(height * .02),
+                                    BorderRadius.circular(height * .02),
                                     color: HexColor("545FDD"),
                                   ),
                                   child: Center(
@@ -128,14 +130,13 @@ class SelectScreen extends StatelessWidget {
                                     height: height,
                                     cubit: cubit,
                                   );
-
                                 },
                                 child: Container(
                                   width: height,
                                   height: height * .07,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(height * .02),
+                                    BorderRadius.circular(height * .02),
                                     color: HexColor("545FDD"),
                                   ),
                                   child: Center(
@@ -163,14 +164,13 @@ class SelectScreen extends StatelessWidget {
                                     height: height,
                                     cubit: cubit,
                                   );
-
                                 },
                                 child: Container(
                                   width: height,
                                   height: height * .07,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(height * .02),
+                                    BorderRadius.circular(height * .02),
                                     color: HexColor("545FDD"),
                                   ),
                                   child: Center(
@@ -198,14 +198,13 @@ class SelectScreen extends StatelessWidget {
                                     height: height,
                                     cubit: cubit,
                                   );
-
                                 },
                                 child: Container(
                                   width: height,
                                   height: height * .07,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(height * .02),
+                                    BorderRadius.circular(height * .02),
                                     color: HexColor("545FDD"),
                                   ),
                                   child: Center(
@@ -233,14 +232,13 @@ class SelectScreen extends StatelessWidget {
                                     height: height,
                                     cubit: cubit,
                                   );
-
                                 },
                                 child: Container(
                                   width: height,
                                   height: height * .07,
                                   decoration: BoxDecoration(
                                     borderRadius:
-                                        BorderRadius.circular(height * .02),
+                                    BorderRadius.circular(height * .02),
                                     color: HexColor("545FDD"),
                                   ),
                                   child: Center(

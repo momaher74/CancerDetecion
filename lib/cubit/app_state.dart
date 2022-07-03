@@ -5,6 +5,8 @@ abstract class AppState {}
 
 class AppInitial extends AppState {}
 
+class ChangeIndexSuccessState extends AppState {}
+class ChangeResultSuccessState extends AppState {}
 class ChangeHomeSuccessState extends AppState {}
 
 class ChangeFeatureSuccessState extends AppState {}

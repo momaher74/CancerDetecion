@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hh/cubit/app_cubit.dart';
-import 'package:hh/helpers/component/component.dart';
 import 'package:hh/helpers/constant/constant.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -155,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               padding: EdgeInsets.all(height * .02),
                               width: height * .35,
-                              height: height * .064,
+                              height: height * .068,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [

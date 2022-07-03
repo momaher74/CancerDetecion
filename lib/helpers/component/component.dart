@@ -20,323 +20,323 @@ class MyDivider extends StatelessWidget {
   }
 }
 
-class HomeWidget extends StatelessWidget {
-  HomeWidget({
-    Key? key,
-    required this.height,
-    required this.cubit,
-  }) : super(key: key);
-  var height;
-  AppCubit cubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: height * .03,
-                  ),
-                  Text(
-                    "    Welcome Back",
-                    style: TextStyle(
-                        fontSize: height * .03,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: height * .01,
-                  ),
-                  Text(
-                    "      here you can see the history of previous test ",
-                    style: TextStyle(
-                        fontSize: height * .02,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  SizedBox(
-                    height: height * .022,
-                  ),
-                  MyDivider(width: height * 1.5, height: height * .001)
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height * .03,
-            ),
-            // Column(
-            //   children: [
-            //     Row(
-            //       children: [
-            //         Text(
-            //           "    History",
-            //           style: TextStyle(
-            //               fontSize: height * .025,
-            //               color: Colors.black,
-            //               fontWeight: FontWeight.w600),
-            //         ),
-            //         const Spacer(),
-            //         GestureDetector(
-            //           onTap: () {
-            //             // cubit.insertToDataBase(
-            //             //   fName: "s1",
-            //             //   type: "colon",
-            //             //   date: "27/6/2022",
-            //             //   time: "7:12",
-            //             //   result: "normal",
-            //             // );
-            //             cubit.deleteAllData();
-            //           },
-            //           child: Container(
-            //             margin: EdgeInsets.only(right: height * .04),
-            //             width: height * .28,
-            //             height: height * .06,
-            //             padding: EdgeInsets.all(height * .01),
-            //             decoration: BoxDecoration(
-            //               color: HexColor("545FDD"),
-            //               borderRadius: BorderRadius.circular(height * .01),
-            //             ),
-            //             child: Center(
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.center,
-            //                 children: [
-            //                   Icon(
-            //                     Icons.delete,
-            //                     size: height * .03,
-            //                     color: Colors.white,
-            //                   ),
-            //                   SizedBox(
-            //                     width: height * .014,
-            //                   ),
-            //                   Text(
-            //                     "Delete All ",
-            //                     style: TextStyle(
-            //                       fontSize: height * .02,
-            //                       color: Colors.white,
-            //                       fontWeight: FontWeight.w500,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //     Container(
-            //       height: height * .7,
-            //       margin: EdgeInsets.all(height * .03),
-            //       padding: EdgeInsets.all(height * .03),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(height * .03),
-            //         color: Colors.white,
-            //       ),
-            //       child: SingleChildScrollView(
-            //         child: Column(
-            //           children: [
-            //             SizedBox(
-            //               height: height * .03,
-            //             ),
-            //             Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //               children: [
-            //                 SizedBox(
-            //                   child: Text(
-            //                     "File name ",
-            //                     style: TextStyle(
-            //                       fontSize: height * .02,
-            //                       color: Colors.black,
-            //                       fontWeight: FontWeight.w400,
-            //                       overflow: TextOverflow.ellipsis,
-            //                     ),
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //                 SizedBox(
-            //                   child: Text(
-            //                     "Cancer Type ",
-            //                     style: TextStyle(
-            //                       fontSize: height * .02,
-            //                       color: Colors.black,
-            //                       fontWeight: FontWeight.w400,
-            //                       overflow: TextOverflow.ellipsis,
-            //                     ),
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //                 SizedBox(
-            //                   child: Text(
-            //                     "Date ",
-            //                     style: TextStyle(
-            //                       fontSize: height * .02,
-            //                       color: Colors.black,
-            //                       fontWeight: FontWeight.w400,
-            //                       overflow: TextOverflow.ellipsis,
-            //                     ),
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //                 SizedBox(
-            //                   child: Text(
-            //                     "Time",
-            //                     style: TextStyle(
-            //                       fontSize: height * .02,
-            //                       color: Colors.black,
-            //                       fontWeight: FontWeight.w400,
-            //                       overflow: TextOverflow.ellipsis,
-            //                     ),
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //                 SizedBox(
-            //                   child: Text(
-            //                     "Result",
-            //                     style: TextStyle(
-            //                         fontSize: height * .02,
-            //                         color: Colors.black,
-            //                         fontWeight: FontWeight.w400,
-            //                         overflow: TextOverflow.ellipsis),
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //                 SizedBox(
-            //                   child: Icon(
-            //                     Icons.delete,
-            //                     color: Colors.white,
-            //                     size: height * .035,
-            //                   ),
-            //                   width: height * .2,
-            //                 ),
-            //               ],
-            //             ),
-            //             SizedBox(
-            //               height: height * .01,
-            //             ),
-            //             MyDivider(width: height * 1.2, height: height * .001),
-            //             BlocConsumer<AppCubit, AppState>(
-            //               builder: (context, state) {
-            //                 return ListView.separated(
-            //                   physics: const NeverScrollableScrollPhysics(),
-            //                   shrinkWrap: true,
-            //                   itemBuilder: (context, index) {
-            //                     return cubit.historyList.isNotEmpty
-            //                         ? Row(
-            //                             mainAxisAlignment:
-            //                                 MainAxisAlignment.spaceAround,
-            //                             children: [
-            //                               SizedBox(
-            //                                 child: Text(
-            //                                   "${cubit.historyList[index]['fName']}",
-            //                                   style: TextStyle(
-            //                                       fontSize: height * .02,
-            //                                       color: Colors.black,
-            //                                       fontWeight: FontWeight.normal,
-            //                                       overflow:
-            //                                           TextOverflow.ellipsis),
-            //                                 ),
-            //                                 width: height * .2,
-            //                               ),
-            //                               SizedBox(
-            //                                 child: Text(
-            //                                   "${cubit.historyList[index]['type']}",
-            //                                   style: TextStyle(
-            //                                       fontSize: height * .02,
-            //                                       color: Colors.black,
-            //                                       fontWeight: FontWeight.normal,
-            //                                       overflow:
-            //                                           TextOverflow.ellipsis),
-            //                                 ),
-            //                                 width: height * .2,
-            //                               ),
-            //                               SizedBox(
-            //                                 child: Text(
-            //                                   "${cubit.historyList[index]['date']}",
-            //                                   style: TextStyle(
-            //                                       fontSize: height * .02,
-            //                                       color: Colors.black,
-            //                                       fontWeight: FontWeight.normal,
-            //                                       overflow:
-            //                                           TextOverflow.ellipsis),
-            //                                 ),
-            //                                 width: height * .2,
-            //                               ),
-            //                               SizedBox(
-            //                                 child: Text(
-            //                                   "${cubit.historyList[index]['time']}",
-            //                                   style: TextStyle(
-            //                                       fontSize: height * .02,
-            //                                       color: Colors.black,
-            //                                       fontWeight: FontWeight.normal,
-            //                                       overflow:
-            //                                           TextOverflow.ellipsis),
-            //                                 ),
-            //                                 width: height * .2,
-            //                               ),
-            //                               SizedBox(
-            //                                 child: Text(
-            //                                   "${cubit.historyList[index]['result']}",
-            //                                   style: TextStyle(
-            //                                       fontSize: height * .02,
-            //                                       color: Colors.black,
-            //                                       fontWeight: FontWeight.normal,
-            //                                       overflow:
-            //                                           TextOverflow.ellipsis),
-            //                                 ),
-            //                                 width: height * .2,
-            //                               ),
-            //                               SizedBox(
-            //                                 child: IconButton(
-            //                                     onPressed: () {
-            //                                       cubit.deleteData(
-            //                                         id: cubit.historyList[index]
-            //                                             ['id'],
-            //                                       );
-            //                                     },
-            //                                     icon: Icon(
-            //                                       Icons.delete,
-            //                                       color: HexColor("545FDD"),
-            //                                       size: height * .035,
-            //                                     )),
-            //                                 width: height * .2,
-            //                               ),
-            //                             ],
-            //                           )
-            //                         : const Center(
-            //                             child: Text("there is no history yet"));
-            //                   },
-            //                   separatorBuilder: (context, index) {
-            //                     return MyDivider(
-            //                       width: height,
-            //                       height: height * .001,
-            //                     );
-            //                   },
-            //                   itemCount: cubit.historyList.isNotEmpty
-            //                       ? cubit.historyList.length
-            //                       : 1,
-            //                 );
-            //               },
-            //               listener: (context, state) {},
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     )
-            //   ],
-            // )
-          ],
-        );
-      },
-    );
-  }
-}
+// class HomeWidget extends StatelessWidget {
+//   HomeWidget({
+//     Key? key,
+//     required this.height,
+//     required this.cubit,
+//   }) : super(key: key);
+//   var height;
+//   AppCubit cubit;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocConsumer<AppCubit, AppState>(
+//       listener: (context, state) {},
+//       builder: (context, state) {
+//         return Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Container(
+//               color: Colors.white,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   SizedBox(
+//                     height: height * .03,
+//                   ),
+//                   Text(
+//                     "    Welcome Back",
+//                     style: TextStyle(
+//                         fontSize: height * .03,
+//                         color: Colors.black,
+//                         fontWeight: FontWeight.bold),
+//                   ),
+//                   SizedBox(
+//                     height: height * .01,
+//                   ),
+//                   Text(
+//                     "      here you can see the history of previous test ",
+//                     style: TextStyle(
+//                         fontSize: height * .02,
+//                         color: Colors.black,
+//                         fontWeight: FontWeight.normal),
+//                   ),
+//                   SizedBox(
+//                     height: height * .022,
+//                   ),
+//                   MyDivider(width: height * 1.5, height: height * .001)
+//                 ],
+//               ),
+//             ),
+//             SizedBox(
+//               height: height * .03,
+//             ),
+//             // Column(
+//             //   children: [
+//             //     Row(
+//             //       children: [
+//             //         Text(
+//             //           "    History",
+//             //           style: TextStyle(
+//             //               fontSize: height * .025,
+//             //               color: Colors.black,
+//             //               fontWeight: FontWeight.w600),
+//             //         ),
+//             //         const Spacer(),
+//             //         GestureDetector(
+//             //           onTap: () {
+//             //             // cubit.insertToDataBase(
+//             //             //   fName: "s1",
+//             //             //   type: "colon",
+//             //             //   date: "27/6/2022",
+//             //             //   time: "7:12",
+//             //             //   result: "normal",
+//             //             // );
+//             //             cubit.deleteAllData();
+//             //           },
+//             //           child: Container(
+//             //             margin: EdgeInsets.only(right: height * .04),
+//             //             width: height * .28,
+//             //             height: height * .06,
+//             //             padding: EdgeInsets.all(height * .01),
+//             //             decoration: BoxDecoration(
+//             //               color: HexColor("545FDD"),
+//             //               borderRadius: BorderRadius.circular(height * .01),
+//             //             ),
+//             //             child: Center(
+//             //               child: Row(
+//             //                 mainAxisAlignment: MainAxisAlignment.center,
+//             //                 children: [
+//             //                   Icon(
+//             //                     Icons.delete,
+//             //                     size: height * .03,
+//             //                     color: Colors.white,
+//             //                   ),
+//             //                   SizedBox(
+//             //                     width: height * .014,
+//             //                   ),
+//             //                   Text(
+//             //                     "Delete All ",
+//             //                     style: TextStyle(
+//             //                       fontSize: height * .02,
+//             //                       color: Colors.white,
+//             //                       fontWeight: FontWeight.w500,
+//             //                     ),
+//             //                   ),
+//             //                 ],
+//             //               ),
+//             //             ),
+//             //           ),
+//             //         ),
+//             //       ],
+//             //     ),
+//             //     Container(
+//             //       height: height * .7,
+//             //       margin: EdgeInsets.all(height * .03),
+//             //       padding: EdgeInsets.all(height * .03),
+//             //       decoration: BoxDecoration(
+//             //         borderRadius: BorderRadius.circular(height * .03),
+//             //         color: Colors.white,
+//             //       ),
+//             //       child: SingleChildScrollView(
+//             //         child: Column(
+//             //           children: [
+//             //             SizedBox(
+//             //               height: height * .03,
+//             //             ),
+//             //             Row(
+//             //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//             //               children: [
+//             //                 SizedBox(
+//             //                   child: Text(
+//             //                     "File name ",
+//             //                     style: TextStyle(
+//             //                       fontSize: height * .02,
+//             //                       color: Colors.black,
+//             //                       fontWeight: FontWeight.w400,
+//             //                       overflow: TextOverflow.ellipsis,
+//             //                     ),
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //                 SizedBox(
+//             //                   child: Text(
+//             //                     "Cancer Type ",
+//             //                     style: TextStyle(
+//             //                       fontSize: height * .02,
+//             //                       color: Colors.black,
+//             //                       fontWeight: FontWeight.w400,
+//             //                       overflow: TextOverflow.ellipsis,
+//             //                     ),
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //                 SizedBox(
+//             //                   child: Text(
+//             //                     "Date ",
+//             //                     style: TextStyle(
+//             //                       fontSize: height * .02,
+//             //                       color: Colors.black,
+//             //                       fontWeight: FontWeight.w400,
+//             //                       overflow: TextOverflow.ellipsis,
+//             //                     ),
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //                 SizedBox(
+//             //                   child: Text(
+//             //                     "Time",
+//             //                     style: TextStyle(
+//             //                       fontSize: height * .02,
+//             //                       color: Colors.black,
+//             //                       fontWeight: FontWeight.w400,
+//             //                       overflow: TextOverflow.ellipsis,
+//             //                     ),
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //                 SizedBox(
+//             //                   child: Text(
+//             //                     "Result",
+//             //                     style: TextStyle(
+//             //                         fontSize: height * .02,
+//             //                         color: Colors.black,
+//             //                         fontWeight: FontWeight.w400,
+//             //                         overflow: TextOverflow.ellipsis),
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //                 SizedBox(
+//             //                   child: Icon(
+//             //                     Icons.delete,
+//             //                     color: Colors.white,
+//             //                     size: height * .035,
+//             //                   ),
+//             //                   width: height * .2,
+//             //                 ),
+//             //               ],
+//             //             ),
+//             //             SizedBox(
+//             //               height: height * .01,
+//             //             ),
+//             //             MyDivider(width: height * 1.2, height: height * .001),
+//             //             BlocConsumer<AppCubit, AppState>(
+//             //               builder: (context, state) {
+//             //                 return ListView.separated(
+//             //                   physics: const NeverScrollableScrollPhysics(),
+//             //                   shrinkWrap: true,
+//             //                   itemBuilder: (context, index) {
+//             //                     return cubit.historyList.isNotEmpty
+//             //                         ? Row(
+//             //                             mainAxisAlignment:
+//             //                                 MainAxisAlignment.spaceAround,
+//             //                             children: [
+//             //                               SizedBox(
+//             //                                 child: Text(
+//             //                                   "${cubit.historyList[index]['fName']}",
+//             //                                   style: TextStyle(
+//             //                                       fontSize: height * .02,
+//             //                                       color: Colors.black,
+//             //                                       fontWeight: FontWeight.normal,
+//             //                                       overflow:
+//             //                                           TextOverflow.ellipsis),
+//             //                                 ),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                               SizedBox(
+//             //                                 child: Text(
+//             //                                   "${cubit.historyList[index]['type']}",
+//             //                                   style: TextStyle(
+//             //                                       fontSize: height * .02,
+//             //                                       color: Colors.black,
+//             //                                       fontWeight: FontWeight.normal,
+//             //                                       overflow:
+//             //                                           TextOverflow.ellipsis),
+//             //                                 ),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                               SizedBox(
+//             //                                 child: Text(
+//             //                                   "${cubit.historyList[index]['date']}",
+//             //                                   style: TextStyle(
+//             //                                       fontSize: height * .02,
+//             //                                       color: Colors.black,
+//             //                                       fontWeight: FontWeight.normal,
+//             //                                       overflow:
+//             //                                           TextOverflow.ellipsis),
+//             //                                 ),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                               SizedBox(
+//             //                                 child: Text(
+//             //                                   "${cubit.historyList[index]['time']}",
+//             //                                   style: TextStyle(
+//             //                                       fontSize: height * .02,
+//             //                                       color: Colors.black,
+//             //                                       fontWeight: FontWeight.normal,
+//             //                                       overflow:
+//             //                                           TextOverflow.ellipsis),
+//             //                                 ),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                               SizedBox(
+//             //                                 child: Text(
+//             //                                   "${cubit.historyList[index]['result']}",
+//             //                                   style: TextStyle(
+//             //                                       fontSize: height * .02,
+//             //                                       color: Colors.black,
+//             //                                       fontWeight: FontWeight.normal,
+//             //                                       overflow:
+//             //                                           TextOverflow.ellipsis),
+//             //                                 ),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                               SizedBox(
+//             //                                 child: IconButton(
+//             //                                     onPressed: () {
+//             //                                       cubit.deleteData(
+//             //                                         id: cubit.historyList[index]
+//             //                                             ['id'],
+//             //                                       );
+//             //                                     },
+//             //                                     icon: Icon(
+//             //                                       Icons.delete,
+//             //                                       color: HexColor("545FDD"),
+//             //                                       size: height * .035,
+//             //                                     )),
+//             //                                 width: height * .2,
+//             //                               ),
+//             //                             ],
+//             //                           )
+//             //                         : const Center(
+//             //                             child: Text("there is no history yet"));
+//             //                   },
+//             //                   separatorBuilder: (context, index) {
+//             //                     return MyDivider(
+//             //                       width: height,
+//             //                       height: height * .001,
+//             //                     );
+//             //                   },
+//             //                   itemCount: cubit.historyList.isNotEmpty
+//             //                       ? cubit.historyList.length
+//             //                       : 1,
+//             //                 );
+//             //               },
+//             //               listener: (context, state) {},
+//             //             ),
+//             //           ],
+//             //         ),
+//             //       ),
+//             //     )
+//             //   ],
+//             // )
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }
 
 class CancerTypeWidget extends StatelessWidget {
   CancerTypeWidget(
@@ -353,7 +353,7 @@ class CancerTypeWidget extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: height * .128,
+              height: height * .13,
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -368,7 +368,14 @@ class CancerTypeWidget extends StatelessWidget {
                       fontSize: height * .025,
                       fontWeight: FontWeight.w400,
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: height * .0435,
+                  ),
+                  MyDivider(
+                    width: double.infinity,
+                    height: height * .001,
+                  ),
                 ],
               ),
             ),
@@ -431,156 +438,191 @@ class CancerTypeWidget extends StatelessWidget {
               width: height * 1.2,
               height: height * .65,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: height * .4,
+                          child: GestureDetector(
+                            onTap: () {
+                              cubit.changeIndex(index: 0);
+                            },
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: height * .02,
+                                ),
+                                Text(
+                                  "File",
+                                  style: TextStyle(
+                                      color: cubit.currentIndex == 0
+                                          ? HexColor("394EFF")
+                                          : Colors.black),
+                                ),
+                                SizedBox(
+                                  height: height * .02,
+                                ),
+                                if (cubit.currentIndex == 0)
+                                  Image(
+                                    image: const AssetImage(
+                                        "assets/images/horizonalline.png"),
+                                    width: height * .55,
+                                    height: height * .01,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: height * .4,
+                          child: GestureDetector(
+                            onTap: () {
+                              cubit.changeIndex(index: 1);
+                            },
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: height * .02,
+                                ),
+                                Text(
+                                  "Results",
+                                  style: TextStyle(
+                                      color: cubit.currentIndex == 1
+                                          ? HexColor("394EFF")
+                                          : Colors.black),
+                                ),
+                                SizedBox(
+                                  height: height * .02,
+                                ),
+                                if (cubit.currentIndex == 1)
+                                  Image(
+                                    image: const AssetImage(
+                                        "assets/images/horizonalline.png"),
+                                    width: height * .55,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    ),
+                    width: double.infinity,
+                    height: height * .09,
+                    color: HexColor("CDD5EB"),
+                  ),
                   SizedBox(
-                    height: height * .04,
+                    height: height * .03,
                   ),
-                  Text(
-                    "Please Upload your CSV Data File",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: height * .025,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  SizedBox(
-                    height: height * .04,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        child: Container(
-                          color: HexColor("CBCCCE"),
-                          width: height * .2,
-                          height: height * .05,
-                          child: Center(
-                            child: Text(
-                              "Choice File ",
+                  if (cubit.currentIndex == 0)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Please upload CSV file ",
+                          style: TextStyle(
+                              color: HexColor("1F245B"),
+                              fontSize: height * .03),
+                        ),
+                        SizedBox(
+                          height: height * .03,
+                        ),
+                        Image(
+                          image: const AssetImage("assets/images/fileIcon.png"),
+                          height: height * .15,
+                          width: height * .1,
+                        ),
+                        SizedBox(
+                          height: height * .01,
+                        ),
+                        if(cubit.fileName!=null)
+                         SizedBox(
+                           width: height*.4,
+                           child: Center(
+                             child: Text(
+                               cubit.fileName!,
                               style: TextStyle(
-                                color: Colors.black,
-                                fontSize: height * .018,
-                                fontWeight: FontWeight.normal,
+                                color: HexColor("1F245B"),
+                                fontSize: height * .03,
+                                overflow: TextOverflow.ellipsis
+                              ),
+                        ),
+                           ),
+                         ),
+                        SizedBox(
+                          height: height * .03,
+                        ),
+                        SizedBox(
+                          width: height * .3,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              cubit.pickFile();
+                            },
+                            child: Text(
+                              "Choose File",
+                              style: TextStyle(
+                                  fontSize: height * .02,
+                                  color: HexColor("394EFF")),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * .03,
+                        ),
+                        if (state is! UploadFileLoadingState)
+                          GestureDetector(
+                            onTap: () {
+                              if (cubit.file != null) {
+                                cubit.uploadFile();
+                              }
+                            },
+                            child: Container(
+                              width: height * .45,
+                              height: height * .07,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.circular(height * .01),
+                                color: HexColor("394EFF"),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "Get Results",
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        onTap: () {
-                          cubit.pickFile();
-                        },
-                      ),
-                      SizedBox(
-                        width: height * .006,
-                      ),
-                      Container(
-                        color: HexColor("E2E9F5"),
-                        width: height * .1,
-                        height: height * .05,
-                        child: Center(
-                          child: Text(
-                            cubit.fileName ?? "  No File",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: height * .013,
-                              fontWeight: FontWeight.normal,
-                              overflow: TextOverflow.ellipsis,
+                        if (state is UploadFileLoadingState)
+                          SizedBox(
+                            width: height * .05,
+                            height: height * .05,
+                            child: CircularProgressIndicator(
+                              color: HexColor("394EFF"),
+                              strokeWidth: height * .006,
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * .08,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      if (cubit.file != null && cubit.model != null) {
-                        cubit.uploadFile();
-                      }
-                      // cubit.insertToDataBase(
-                      //   fName: "s1",
-                      //   type: "colon",
-                      //   date: "27/6/2022",
-                      //   time: "7:12",
-                      //   result: "normal",
-                      // );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(right: height * .025),
-                      width: height * .4,
-                      height: height * .065,
-                      padding: EdgeInsets.all(height * .01),
-                      decoration: BoxDecoration(
-                          color: HexColor("545FDD"),
-                          borderRadius: BorderRadius.circular(height * .01)),
-                      child: Center(
-                        child: Text(
-                          "Get Result",
-                          style: TextStyle(
-                            fontSize: height * .02,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                      ],
+                    ),
+                  if (cubit.currentIndex == 1)
+                    Center(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: height * .16,
                           ),
-                        ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(height * .015),
+                              color: HexColor("E8EDEF"),
+                            ),
+                            width: height * .4,
+                            height: height * .2,
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * .05,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Align(
-                        child: Text(
-                          "     Result",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: height * .03,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        alignment: Alignment(-.5, 0),
-                      ),
-                      SizedBox(
-                        height: height * .01,
-                      ),
-                      if (state is! UploadFileLoadingState)
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(height * .015),
-                            color: HexColor("CDD5EB"),
-                          ),
-                          width: height * .6,
-                          height: height * .2,
-                          child: Center(
-                            child: cubit.result == null
-                                ? Text("")
-                                : Text(cubit.result!),
-                          ),
-                        ),
-                      if (state is UploadFileLoadingState)
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(height * .015),
-                            color: HexColor("CDD5EB"),
-                          ),
-                          width: height * .6,
-                          height: height * .2,
-                          child: Center(
-                            child: SizedBox(
-                              width: height * .045,
-                              height: height * .045,
-                              child: CircularProgressIndicator(
-                                strokeWidth: height * .006,
-                                color: HexColor("545FDD"),
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
-                  )
                 ],
               ),
             ),
@@ -592,226 +634,226 @@ class CancerTypeWidget extends StatelessWidget {
   }
 }
 
-class FeatureSelectionWidgets extends StatelessWidget {
-  FeatureSelectionWidgets({Key? key, required this.height, required this.cubit})
-      : super(key: key);
-  var height;
-  AppCubit? cubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<AppCubit, AppState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: height * .128,
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: height * .05,
-                  ),
-                  Text(
-                    "    Feature Selection",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: height * .025,
-                        fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: height * .04,
-            ),
-            Row(
-              children: [
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    cubit!.refresh();
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: height * .025),
-                    width: height * .28,
-                    height: height * .06,
-                    padding: EdgeInsets.all(height * .01),
-                    decoration: BoxDecoration(
-                        color: HexColor("545FDD"),
-                        borderRadius: BorderRadius.circular(height * .01)),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.refresh,
-                            size: height * .03,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: height * .014,
-                          ),
-                          Text(
-                            "Refresh ",
-                            style: TextStyle(
-                              fontSize: height * .02,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: height * .04,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: height * .04,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(height * .02),
-                color: Colors.white,
-              ),
-              width: height * 1.2,
-              height: height * .65,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: height * .04,
-                  ),
-                  Text(
-                    "Please Upload your CSV Data File",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: height * .025,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  SizedBox(
-                    height: height * .04,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        child: Container(
-                          color: HexColor("CBCCCE"),
-                          width: height * .2,
-                          height: height * .05,
-                          child: Center(
-                            child: Text(
-                              "Choice File ",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: height * .018,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          cubit!.pickFile();
-                        },
-                      ),
-                      SizedBox(
-                        width: height * .006,
-                      ),
-                      Container(
-                        color: HexColor("E2E9F5"),
-                        width: height * .1,
-                        height: height * .05,
-                        child: Center(
-                          child: Text(
-                            cubit!.fileName ?? "  No File",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: height * .013,
-                              fontWeight: FontWeight.normal,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * .08,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      margin: EdgeInsets.only(right: height * .025),
-                      width: height * .4,
-                      height: height * .065,
-                      padding: EdgeInsets.all(height * .01),
-                      decoration: BoxDecoration(
-                          color: HexColor("545FDD"),
-                          borderRadius: BorderRadius.circular(height * .01)),
-                      child: Center(
-                        child: Text(
-                          "Feature Selection",
-                          style: TextStyle(
-                            fontSize: height * .02,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * .05,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      margin: EdgeInsets.only(right: height * .025),
-                      width: height * .4,
-                      height: height * .065,
-                      padding: EdgeInsets.all(height * .01),
-                      decoration: BoxDecoration(
-                          color: HexColor("2A3079"),
-                          borderRadius: BorderRadius.circular(height * .01)),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: height * .1,
-                          ),
-                          Icon(
-                            Icons.file_copy_sharp,
-                            size: height * .03,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: height * .02,
-                          ),
-                          Text(
-                            "Copy File",
-                            style: TextStyle(
-                              fontSize: height * .02,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
-      listener: (context, state) {},
-    );
-  }
-}
+// class FeatureSelectionWidgets extends StatelessWidget {
+//   FeatureSelectionWidgets({Key? key, required this.height, required this.cubit})
+//       : super(key: key);
+//   var height;
+//   AppCubit? cubit;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocConsumer<AppCubit, AppState>(
+//       builder: (context, state) {
+//         return Column(
+//           children: [
+//             Container(
+//               width: double.infinity,
+//               height: height * .128,
+//               color: Colors.white,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   SizedBox(
+//                     height: height * .05,
+//                   ),
+//                   Text(
+//                     "    Feature Selection",
+//                     style: TextStyle(
+//                         color: Colors.black,
+//                         fontSize: height * .025,
+//                         fontWeight: FontWeight.w400),
+//                   )
+//                 ],
+//               ),
+//             ),
+//             SizedBox(
+//               height: height * .04,
+//             ),
+//             Row(
+//               children: [
+//                 const Spacer(),
+//                 GestureDetector(
+//                   onTap: () {
+//                     cubit!.refresh();
+//                   },
+//                   child: Container(
+//                     margin: EdgeInsets.only(right: height * .025),
+//                     width: height * .28,
+//                     height: height * .06,
+//                     padding: EdgeInsets.all(height * .01),
+//                     decoration: BoxDecoration(
+//                         color: HexColor("545FDD"),
+//                         borderRadius: BorderRadius.circular(height * .01)),
+//                     child: Center(
+//                       child: Row(
+//                         mainAxisAlignment: MainAxisAlignment.center,
+//                         children: [
+//                           Icon(
+//                             Icons.refresh,
+//                             size: height * .03,
+//                             color: Colors.white,
+//                           ),
+//                           SizedBox(
+//                             width: height * .014,
+//                           ),
+//                           Text(
+//                             "Refresh ",
+//                             style: TextStyle(
+//                               fontSize: height * .02,
+//                               color: Colors.white,
+//                               fontWeight: FontWeight.w500,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ),
+//                 ),
+//                 SizedBox(
+//                   width: height * .04,
+//                 ),
+//               ],
+//             ),
+//             SizedBox(
+//               height: height * .04,
+//             ),
+//             Container(
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadius.circular(height * .02),
+//                 color: Colors.white,
+//               ),
+//               width: height * 1.2,
+//               height: height * .65,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.center,
+//                 children: [
+//                   SizedBox(
+//                     height: height * .04,
+//                   ),
+//                   Text(
+//                     "Please Upload your CSV Data File",
+//                     style: TextStyle(
+//                         color: Colors.black,
+//                         fontSize: height * .025,
+//                         fontWeight: FontWeight.normal),
+//                   ),
+//                   SizedBox(
+//                     height: height * .04,
+//                   ),
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       GestureDetector(
+//                         child: Container(
+//                           color: HexColor("CBCCCE"),
+//                           width: height * .2,
+//                           height: height * .05,
+//                           child: Center(
+//                             child: Text(
+//                               "Choice File ",
+//                               style: TextStyle(
+//                                 color: Colors.black,
+//                                 fontSize: height * .018,
+//                                 fontWeight: FontWeight.normal,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                         onTap: () {
+//                           cubit!.pickFile();
+//                         },
+//                       ),
+//                       SizedBox(
+//                         width: height * .006,
+//                       ),
+//                       Container(
+//                         color: HexColor("E2E9F5"),
+//                         width: height * .1,
+//                         height: height * .05,
+//                         child: Center(
+//                           child: Text(
+//                             cubit!.fileName ?? "  No File",
+//                             style: TextStyle(
+//                               color: Colors.black,
+//                               fontSize: height * .013,
+//                               fontWeight: FontWeight.normal,
+//                               overflow: TextOverflow.ellipsis,
+//                             ),
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   SizedBox(
+//                     height: height * .08,
+//                   ),
+//                   GestureDetector(
+//                     onTap: () {},
+//                     child: Container(
+//                       margin: EdgeInsets.only(right: height * .025),
+//                       width: height * .4,
+//                       height: height * .065,
+//                       padding: EdgeInsets.all(height * .01),
+//                       decoration: BoxDecoration(
+//                           color: HexColor("545FDD"),
+//                           borderRadius: BorderRadius.circular(height * .01)),
+//                       child: Center(
+//                         child: Text(
+//                           "Feature Selection",
+//                           style: TextStyle(
+//                             fontSize: height * .02,
+//                             color: Colors.white,
+//                             fontWeight: FontWeight.w500,
+//                           ),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: height * .05,
+//                   ),
+//                   GestureDetector(
+//                     onTap: () {},
+//                     child: Container(
+//                       margin: EdgeInsets.only(right: height * .025),
+//                       width: height * .4,
+//                       height: height * .065,
+//                       padding: EdgeInsets.all(height * .01),
+//                       decoration: BoxDecoration(
+//                           color: HexColor("2A3079"),
+//                           borderRadius: BorderRadius.circular(height * .01)),
+//                       child: Row(
+//                         children: [
+//                           SizedBox(
+//                             width: height * .1,
+//                           ),
+//                           Icon(
+//                             Icons.file_copy_sharp,
+//                             size: height * .03,
+//                             color: Colors.white,
+//                           ),
+//                           SizedBox(
+//                             width: height * .02,
+//                           ),
+//                           Text(
+//                             "Copy File",
+//                             style: TextStyle(
+//                               fontSize: height * .02,
+//                               color: Colors.white,
+//                               fontWeight: FontWeight.w500,
+//                             ),
+//                           ),
+//                         ],
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         );
+//       },
+//       listener: (context, state) {},
+//     );
+//   }
+// }
