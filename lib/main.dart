@@ -7,8 +7,6 @@ import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'cubit/observar.dart';
 
-
-
 void main () async
 
 {
