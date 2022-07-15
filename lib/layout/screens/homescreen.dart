@@ -1,10 +1,7 @@
-import 'dart:developer';
 import 'dart:io';
 
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hh/cubit/app_cubit.dart';
@@ -421,72 +418,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        cubit.changeContactSelect();
-                      },
-                      child: Row(
-                        children: [
-                          if (cubit.contactSelect == true)
-                            Image(
-                              image: const AssetImage(
-                                  "assets/images/verticalselect.png"),
-                              height: height * .06,
-                              width: height * .008,
-                            ),
-                          SizedBox(
-                            width: height * .04,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(height * .01),
-                              color: cubit.contactSelect == true
-                                  ? buttonColor
-                                  : Colors.white,
-                            ),
-                            padding: EdgeInsets.all(height * .02),
-                            width: height * .35,
-                            height: height * .062,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(
-                                  Icons.wechat_outlined,
-                                  size: height * .03,
-                                  color: cubit.contactSelect == true
-                                      ? Colors.white
-                                      : iconColor,
-                                ),
-                                SizedBox(
-                                  width: height * .02,
-                                ),
-                                Text(
-                                  'Contact Us',
-                                  style: TextStyle(
-                                      fontSize: height * .02,
-                                      fontWeight: FontWeight.w400,
-                                      color: cubit.contactSelect == true
-                                          ? Colors.white
-                                          : Colors.black),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * .02,
-                    ),
-                    GestureDetector(
-                      onTap: () {
                         cubit.changeExitSelect();
                         Dialog exitDialog = Dialog(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0)),
                           //this right here
-                          child: Container(
-                            height: 100.0,
-                            width: 100.0,
+                          child: SizedBox(
+                            height: height*0.13,
+                            width: width*0.15,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[

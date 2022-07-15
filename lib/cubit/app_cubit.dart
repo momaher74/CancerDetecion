@@ -166,20 +166,6 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeBreastSuccessState());
   }
 
-  void changeContactSelect() {
-    homeSelect = false;
-    featureSelect = false;
-    colonSelect = false;
-    breastSelect = false;
-    liverSelect = false;
-    lungSelect = false;
-    leukemiaSelect = false;
-    contactSelect = true;
-    exitSelect = false;
-    cancerType = "Contact US";
-
-    emit(ChangeContactSuccessState());
-  }
 
   void changeExitSelect() {
     homeSelect = false;
@@ -214,7 +200,11 @@ class AppCubit extends Cubit<AppState> {
 
   String? result;
 
+  bool load =false;
+
+
   void uploadFile() async {
+    load=true;
     emit(UploadFileLoadingState());
     if (model == "lung") {
       postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/detectLung/");
@@ -253,7 +243,11 @@ class AppCubit extends Cubit<AppState> {
         }else if (value.body == '{"prediction":"Please Upload Usable Data File"}') {
           result = "Please upload usable data file";
         }
+
+
+        load=false;
         changeToResult();
+
       }).catchError((error) {
         emit(UploadFileErrorState());
       });

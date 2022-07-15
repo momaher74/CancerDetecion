@@ -587,7 +587,7 @@ class CancerTypeWidget extends StatelessWidget {
                         SizedBox(
                           height: height * .035,
                         ),
-                        if (state is! UploadFileLoadingState)
+                        if (cubit.load==false)
                           GestureDetector(
                             onTap: () {
                               if (cubit.file != null) {
@@ -610,7 +610,7 @@ class CancerTypeWidget extends StatelessWidget {
                               ),
                             ),
                           ),
-                        if (state is UploadFileLoadingState)
+                        if (cubit.load==true)
                           SizedBox(
                             width: height * .05,
                             height: height * .05,
