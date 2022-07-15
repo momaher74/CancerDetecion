@@ -73,7 +73,7 @@ class AppCubit extends Cubit<AppState> {
     emit(ChangeFeatureSuccessState());
   }
 
-  void changeColonSelect({required height, required cubit}) {
+  void changeColonSelect({required height, required cubit,required width}) {
     homeSelect = false;
     featureSelect = false;
     colonSelect = true;
@@ -83,14 +83,15 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
+    result=null;
     cancerType = "Colon Cancer";
     model = 'colon';
 
-    screen = CancerTypeWidget(height: height, cubit: cubit);
+    screen = CancerTypeWidget(height: height, cubit: cubit,width: width,);
     emit(ChangeColonSuccessState());
   }
 
-  void changeLiverSelect({required height, required cubit}) {
+  void changeLiverSelect({required height, required cubit,required width}) {
     homeSelect = false;
     featureSelect = false;
     colonSelect = false;
@@ -100,14 +101,15 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
+    result=null;
     cancerType = "Liver Cancer";
     model = 'liver';
-    screen = CancerTypeWidget(height: height, cubit: cubit);
+    screen = CancerTypeWidget(height: height, cubit: cubit,width: width,);
 
     emit(ChangeLiverSuccessState());
   }
 
-  void changeLungSelect({required height, required cubit}) {
+  void changeLungSelect({required height, required cubit,required width}) {
     homeSelect = false;
     featureSelect = false;
     colonSelect = false;
@@ -117,15 +119,16 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = false;
     contactSelect = false;
     exitSelect = false;
+    result=null;
     cancerType = "Lung Cancer";
     model = 'lung';
 
-    screen = CancerTypeWidget(height: height, cubit: cubit);
+    screen = CancerTypeWidget(height: height, cubit: cubit,width: width,);
 
     emit(ChangeLungSuccessState());
   }
 
-  void changeLeukemiaSelect({required height, required cubit}) {
+  void changeLeukemiaSelect({required height, required cubit,required width}) {
     homeSelect = false;
     featureSelect = false;
     colonSelect = false;
@@ -135,15 +138,16 @@ class AppCubit extends Cubit<AppState> {
     leukemiaSelect = true;
     contactSelect = false;
     exitSelect = false;
+    result=null;
     cancerType = "Leukemia Cancer";
     model = 'leukemia';
 
-    screen = CancerTypeWidget(height: height, cubit: cubit);
+    screen = CancerTypeWidget(height: height, cubit: cubit,width: width,);
 
     emit(ChangeLeukemiaSuccessState());
   }
 
-  void changeBreastSelect({required height, required cubit}) {
+  void changeBreastSelect({required height, required cubit,required width}) {
     homeSelect = false;
     featureSelect = false;
     colonSelect = false;
@@ -155,8 +159,9 @@ class AppCubit extends Cubit<AppState> {
     exitSelect = false;
     cancerType = "Breast Cancer";
     model = 'breast';
+    result=null;
 
-    screen = CancerTypeWidget(height: height, cubit: cubit);
+    screen = CancerTypeWidget(height: height, cubit: cubit,width: width,);
 
     emit(ChangeBreastSuccessState());
   }
@@ -196,7 +201,7 @@ class AppCubit extends Cubit<AppState> {
   String? fileName;
 
   pickFile() {
-    FilePicker.platform.pickFiles().then(
+    FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['csv'],).then(
       (value) {
         file = File(value!.files.single.path!);
         fileName = value.files.single.name;
@@ -211,7 +216,6 @@ class AppCubit extends Cubit<AppState> {
 
   void uploadFile() async {
     emit(UploadFileLoadingState());
-    print(model);
     if (model == "lung") {
       postUri = Uri.parse("https://cancer-api-2022.herokuapp.com/detectLung/");
     } else if (model == "leukemia") {
@@ -241,12 +245,13 @@ class AppCubit extends Cubit<AppState> {
       http.StreamedResponse response = await request.send();
 
       http.Response.fromStream(response).then((value) {
-        print(value.body);
-        print(value.body.runtimeType);
+
         if (value.body == '{"prediction":"Normal"}') {
           result = "Normal";
         } else if (value.body == '{"prediction":"Tumoral"}') {
           result = "Tumoral";
+        }else if (value.body == '{"prediction":"Please Upload Usable Data File"}') {
+          result = "Please upload usable data file";
         }
         changeToResult();
       }).catchError((error) {
@@ -261,6 +266,7 @@ class AppCubit extends Cubit<AppState> {
     file = null;
     fileName = null;
     result = null;
+    currentIndex=0;
     emit(RefreshSuccessState());
   }
 }

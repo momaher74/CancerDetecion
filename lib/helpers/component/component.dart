@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:hh/cubit/app_cubit.dart';
+import 'package:hh/helpers/constant/constant.dart';
 
 class MyDivider extends StatelessWidget {
   MyDivider({Key? key, required this.width, required this.height})
@@ -340,9 +341,10 @@ class MyDivider extends StatelessWidget {
 
 class CancerTypeWidget extends StatelessWidget {
   CancerTypeWidget(
-      {Key? key, required this.height, required AppCubit this.cubit})
+      {Key? key, required this.height,required this.width, required AppCubit this.cubit})
       : super(key: key);
   var height;
+  var width;
   AppCubit cubit;
 
   @override
@@ -357,24 +359,21 @@ class CancerTypeWidget extends StatelessWidget {
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(
-                    height: height * .05,
-                  ),
                   Text(
                     "   " + cubit.cancerType,
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: height * .025,
-                      fontWeight: FontWeight.w400,
+                      color: textColor,
+                      fontSize: width *0.018,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(
                     height: height * .0435,
                   ),
-                  MyDivider(
-                    width: double.infinity,
-                    height: height * .001,
+                  Divider(
+                    height: height*0.001,
                   ),
                 ],
               ),
@@ -395,7 +394,7 @@ class CancerTypeWidget extends StatelessWidget {
                     height: height * .06,
                     padding: EdgeInsets.all(height * .01),
                     decoration: BoxDecoration(
-                        color: HexColor("545FDD"),
+                        color: buttonColor,
                         borderRadius: BorderRadius.circular(height * .01)),
                     child: Center(
                       child: Row(
@@ -448,29 +447,38 @@ class CancerTypeWidget extends StatelessWidget {
                             onTap: () {
                               cubit.changeIndex(index: 0);
                             },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: height * .02,
-                                ),
-                                Text(
-                                  "File",
-                                  style: TextStyle(
-                                      color: cubit.currentIndex == 0
-                                          ? HexColor("394EFF")
-                                          : Colors.black),
-                                ),
-                                SizedBox(
-                                  height: height * .02,
-                                ),
-                                if (cubit.currentIndex == 0)
-                                  Image(
-                                    image: const AssetImage(
-                                        "assets/images/horizonalline.png"),
-                                    width: height * .55,
-                                    height: height * .01,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(width*0.1),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * .02,
                                   ),
-                              ],
+                                  Text(
+                                    "Data File",
+                                    style: TextStyle(
+                                        height: height*0.002,
+                                        fontSize: width*0.015,
+                                        fontWeight: FontWeight.w600,
+                                        color: cubit.currentIndex == 0
+                                            ? HexColor("394EFF")
+                                            : textColor),
+                                  ),
+                                  SizedBox(
+                                    height: height * .02,
+                                  ),
+                                  if (cubit.currentIndex == 0)
+                                    Image(
+                                      image: const AssetImage(
+                                          "assets/images/horizonalline.png"),
+                                      width: width * .5,
+                                      height: height * .01,
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -480,28 +488,37 @@ class CancerTypeWidget extends StatelessWidget {
                             onTap: () {
                               cubit.changeIndex(index: 1);
                             },
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height: height * .02,
-                                ),
-                                Text(
-                                  "Results",
-                                  style: TextStyle(
-                                      color: cubit.currentIndex == 1
-                                          ? HexColor("394EFF")
-                                          : Colors.black),
-                                ),
-                                SizedBox(
-                                  height: height * .02,
-                                ),
-                                if (cubit.currentIndex == 1)
-                                  Image(
-                                    image: const AssetImage(
-                                        "assets/images/horizonalline.png"),
-                                    width: height * .55,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(width*0.1),
+                              ),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: height * .02,
                                   ),
-                              ],
+                                  Text(
+                                    "Result",
+                                    style: TextStyle(
+                                        height: height*0.002,
+                                        fontSize: width*0.015,
+                                        fontWeight: FontWeight.w600,
+                                        color: cubit.currentIndex == 1
+                                            ? HexColor("394EFF")
+                                            : textColor),
+                                  ),
+                                  SizedBox(
+                                    height: height * .02,
+                                  ),
+                                  if (cubit.currentIndex == 1)
+                                    Image(
+                                      image: const AssetImage(
+                                          "assets/images/horizonalline.png"),
+                                      width: width * .5,
+                                      height: height * .01,                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -520,28 +537,24 @@ class CancerTypeWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Please upload CSV file ",
+                          "Please Upload your Data File",
                           style: TextStyle(
-                              color: HexColor("1F245B"),
+                              color: textColor,
                               fontSize: height * .03),
                         ),
                         SizedBox(
-                          height: height * .03,
+                          height: height * .02,
                         ),
                         Image(
                           image: const AssetImage("assets/images/fileIcon.png"),
                           height: height * .15,
-                          width: height * .1,
+                          width: width * .06,
                         ),
-                        SizedBox(
-                          height: height * .01,
-                        ),
-                        if(cubit.fileName!=null)
                          SizedBox(
                            width: height*.4,
                            child: Center(
                              child: Text(
-                               cubit.fileName!,
+                               cubit.fileName??'',
                               style: TextStyle(
                                 color: HexColor("1F245B"),
                                 fontSize: height * .03,
@@ -551,11 +564,15 @@ class CancerTypeWidget extends StatelessWidget {
                            ),
                          ),
                         SizedBox(
-                          height: height * .03,
+                          height: height * .02,
                         ),
                         SizedBox(
-                          width: height * .3,
+                          width: width * .2,
+                          height: height*0.06,
                           child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(width: width*0.001, color: HexColor('394EFF')),
+                            ),
                             onPressed: () {
                               cubit.pickFile();
                             },
@@ -568,7 +585,7 @@ class CancerTypeWidget extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: height * .03,
+                          height: height * .035,
                         ),
                         if (state is! UploadFileLoadingState)
                           GestureDetector(
@@ -617,8 +634,19 @@ class CancerTypeWidget extends StatelessWidget {
                                   BorderRadius.circular(height * .015),
                               color: HexColor("E8EDEF"),
                             ),
-                            width: height * .4,
+                            padding: EdgeInsets.all(width*0.01),
+                            width: width * .25,
                             height: height * .2,
+                            child: Center(
+                              child: Text(
+                                cubit.result??'',
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontWeight:cubit.result == "Please upload usable data file" ? FontWeight.w500: FontWeight.w600,
+                                  fontSize: cubit.result == "Please upload usable data file" ? width*0.017:width*0.025,
+                                ),
+                              ),
+                            ),
                           ),
                         ],
                       ),

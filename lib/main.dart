@@ -3,28 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hh/cubit/app_cubit.dart';
 import 'package:hh/layout/screens/homescreen.dart';
 import 'package:hh/layout/screens/selectscreen.dart';
-import 'package:window_manager/window_manager.dart';
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'cubit/observar.dart';
 
-void main()async {
+
+
+void main () async
+
+{
   WidgetsFlutterBinding.ensureInitialized();
 
-  // windowManager.waitUntilReadyToShow().then((_) async {
-  //   await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-  //   await windowManager.setBackgroundColor(Colors.transparent);
-  //   await windowManager.setSize(const Size(800, 600));
-  //   await windowManager.setMinimumSize(const Size(800, 600));
-  //   await windowManager.setMaximumSize(const Size(double.infinity, double.infinity));
-  //   await windowManager.center();
-  //   await windowManager.show();
-  //   await windowManager.focus();
-  //   await windowManager.setSkipTaskbar(false);
-  // });
-  BlocOverrides.runZoned(
-        () => runApp(const MyApp()),
-    blocObserver: AppBlocObserver(),
-  );
+  doWhenWindowReady(() {
+    final win = appWindow;
+    final initialSize = Size(1350, 800);
+    final minSize = Size(1350, 800);
+    final maxSize = Size(1350, 800);
+    win.maxSize = maxSize;
+    win.minSize = minSize;
+    win.size = initialSize; //default size
+    //appWindow.maximizeOrRestore();
+    win.title = "Cancer Detection";
+
+    win.show();
+  });
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

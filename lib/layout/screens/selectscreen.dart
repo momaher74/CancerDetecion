@@ -4,6 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:hh/cubit/app_cubit.dart';
 import 'package:hh/layout/screens/homescreen.dart';
 
+import '../../helpers/constant/constant.dart';
+
 class SelectScreen extends StatelessWidget {
   const SelectScreen({Key? key}) : super(key: key);
 
@@ -13,6 +15,10 @@ class SelectScreen extends StatelessWidget {
         .of(context)
         .size
         .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     var cubit = AppCubit.get(context);
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
@@ -21,7 +27,7 @@ class SelectScreen extends StatelessWidget {
           body: Row(
             children: [
               Container(
-                color: Colors.white,
+                color: HexColor('F6FAFF'),
                 width: height * .6,
                 height: double.infinity,
                 child: Center(
@@ -34,13 +40,13 @@ class SelectScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  color: HexColor("F6FAFF"),
+                  color: HexColor("FFFFFF"),
                   height: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: height * .1,
+                        height: height * .05,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,210 +59,215 @@ class SelectScreen extends StatelessWidget {
                           Text(
                             "MicroCare",
                             style: TextStyle(
-                              fontSize: height * .03,
-                              fontWeight: FontWeight.w600,
+                              fontSize: width * .023,
+                              fontWeight: FontWeight.w700,
+                              color: HexColor('1F245B'),
                             ),
                           ),
                           Text(
                             "Cancer Detection",
                             style: TextStyle(
-                                fontSize: height * .015,
-                                fontWeight: FontWeight.w400,
+                                fontSize: width * .013,
+                                fontWeight: FontWeight.w600,
                                 color: HexColor("4F548A")),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: height * .1,
+                        height: height * .09,
                       ),
                       SizedBox(
-                        height: height * .5,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "please choose the cancer detection type ",
-                                style: TextStyle(
-                                  fontSize: height * .025,
-                                  fontWeight: FontWeight.w500,
+                        width: width*0.48,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "please choose the cancer detection type ",
+                              style: TextStyle(
+                                fontSize: height * .025,
+                                fontWeight: FontWeight.w600,
+                                color: HexColor('1F245B'),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
+                                  ),
+                                );
+                                cubit.changeColonSelect(
+                                  height: height,
+                                  cubit: cubit,
+                                  width: width,
+                                );
+                              },
+                              child: Container(
+                                height: height * .065,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(height * .02),
+                                  color: buttonColor,
                                 ),
-                              ),
-                              SizedBox(
-                                height: height * .04,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                  cubit.changeColonSelect(
-                                    height: height,
-                                    cubit: cubit,
-                                  );
-                                },
-                                child: Container(
-                                  width: height,
-                                  height: height * .07,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(height * .02),
-                                    color: HexColor("545FDD"),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Colon Cancer",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: height * .022,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * .04,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                  cubit.changeLungSelect(
-                                    height: height,
-                                    cubit: cubit,
-                                  );
-                                },
-                                child: Container(
-                                  width: height,
-                                  height: height * .07,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(height * .02),
-                                    color: HexColor("545FDD"),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Lung Cancer",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: height * .022,
-                                      ),
+                                child: Center(
+                                  child: Text(
+                                    "Colon Cancer",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: height * .022,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: height * .04,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                  cubit.changeLiverSelect(
-                                    height: height,
-                                    cubit: cubit,
-                                  );
-                                },
-                                child: Container(
-                                  width: height,
-                                  height: height * .07,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(height * .02),
-                                    color: HexColor("545FDD"),
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Liver Cancer",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: height * .022,
-                                      ),
+                                );
+                                cubit.changeLungSelect(
+                                  height: height,
+                                  cubit: cubit,
+                                  width: width,
+                                );
+                              },
+                              child: Container(
+                                height: height * .065,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(height * .02),
+                                  color: buttonColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Lung Cancer",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: height * .022,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: height * .04,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                  cubit.changeBreastSelect(
-                                    height: height,
-                                    cubit: cubit,
-                                  );
-                                },
-                                child: Container(
-                                  width: height,
-                                  height: height * .07,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(height * .02),
-                                    color: HexColor("545FDD"),
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Breast Cancer",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: height * .022,
-                                      ),
+                                );
+                                cubit.changeLiverSelect(
+                                  height: height,
+                                  cubit: cubit,
+                                  width: width,
+                                );
+                              },
+                              child: Container(
+                                height: height * .065,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(height * .02),
+                                  color: buttonColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Liver Cancer",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: height * .022,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: height * .04,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ),
-                                  );
-                                  cubit.changeLeukemiaSelect(
-                                    height: height,
-                                    cubit: cubit,
-                                  );
-                                },
-                                child: Container(
-                                  width: height,
-                                  height: height * .07,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(height * .02),
-                                    color: HexColor("545FDD"),
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Leukemia Cancer",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: height * .022,
-                                      ),
+                                );
+                                cubit.changeBreastSelect(
+                                  height: height,
+                                  cubit: cubit,
+                                  width: width,
+                                );
+                              },
+                              child: Container(
+                                height: height * .065,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(height * .02),
+                                  color: buttonColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Breast Cancer",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: height * .022,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: height * .04,
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeScreen(),
+                                  ),
+                                );
+                                cubit.changeLeukemiaSelect(
+                                  height: height,
+                                  cubit: cubit,
+                                  width: width,
+                                );
+                              },
+                              child: Container(
+                                height: height * .065,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(height * .02),
+                                  color: buttonColor,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Leukemia Cancer",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: height * .022,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: height * .04,
+                            ),
+                          ],
                         ),
                       ),
                     ],
